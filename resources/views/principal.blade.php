@@ -3,6 +3,5 @@
 @section('title', 'Principal')
 
 @section('content')
-<h1>Bienvenidos a Nuestra Empresa</h1>
-<p>Esta es la página principal del proyecto integrador.</p>
+<h1 style="color:red;">¡SI ESTO SE VE, FUNCIONA!</h1>
 @endsection
