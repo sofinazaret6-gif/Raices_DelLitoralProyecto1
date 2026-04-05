@@ -69,7 +69,7 @@ a.custom-hover:hover {
 .fondo {
     background-image: url('../images/fondoNuevoR.png');  
     background-size: cover; /* Cambiado a cover para que llene todo el ancho */
-    background-position: center ; /* Cambiado de 150px a 0 para que suba */
+    background-position: center 65%; /* Cambiado de 150px a 0 para que suba */
     background-repeat: no-repeat;
     background-color: #f4f4f4;
 }
