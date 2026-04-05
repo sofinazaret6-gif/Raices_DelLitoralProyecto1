@@ -35,9 +35,18 @@
             </div>
         </div>
     </nav>
+
+    <div style="height: 350px; background: transparent;"></div> <!-- Espacio para ver el fondo -->
+
+    <nav  class="navbar navbar-dark mt-5" style="background-color: #e0e28d; margin-top: 150px; margin-bottom: 0;">
+      <div class="container-fluid justify-content-center">
+         @yield('BarraP')
+        </span>
+      </div>
+    </nav>
     
     <!-- CONTENIDO PRINCIPAL DE CADA VISTA -->
-   <main class="container-fluid custom-bg mt-5">
+   <main class="container-fluid custom-bg ">
     <div class="container">
         @yield('content')
     </div>

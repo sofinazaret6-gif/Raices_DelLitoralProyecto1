@@ -53,7 +53,7 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="/P-aromaticas">Plantas Aromáticas</a></li>
                     <li class="nav-item"><a class="nav-link" href="/P-frutales">Plantas frutales</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Macetas">Macetas y abono</a></li>
