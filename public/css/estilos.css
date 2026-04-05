@@ -1,0 +1,85 @@
+
+ /* estilos.css */
+
+/* Fuente global opcional (Bootstrap ya tiene sans-serif por defecto) */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Colores personalizados */
+p.custom-color {
+    color: #444444; /* Gris más oscuro que text-secondary */
+    font-size: 18px;
+}
+
+/* Ajustes de margen/padding especiales */
+.div-especial {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+/* Efectos extra, ejemplo para botones */
+.btn-custom {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Subrayado al pasar el mouse en enlaces fuera del navbar */
+a.custom-hover:hover {
+    text-decoration: underline;
+}
+/* Navbar con color personalizado */
+/* Navbar con color personalizado y más alta */
+.custom-navbar {
+    background-color: #a5c371; /* Cambia este color al que quieras */
+    padding-top: 15px;        /* Espacio arriba de los enlaces */
+    padding-bottom: 15px;     /* Espacio abajo de los enlaces */
+    min-height: 105px;         /* Altura mínima de la barra */
+}
+/* Fondo del contenido principal */
+.custom-bg {
+    background-color: #f1ebd8; /* Ejemplo: celeste claro */
+    min-height: 90vh; /* Opcional para que cubra más altura */
+    padding: 50px;
+    font-size: 16px; /* tamaño de párrafos en el contenido principal */
+}
+
+/* Footer con color diferente */
+.custom-footer {
+     background-color: #a5c371; /* Mismo tono que navbar para uniformidad */
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+.custom-navbar .nav-link {
+    color: white; /* o el color que quieras */
+    font-size: 18px; /* tamaño de letra de los enlaces de la navbar */
+    font-weight: 600; /* opcional: grosor de la letra */
+    padding-left: 15px;       /* Espacio entre enlaces */
+    padding-right: 15px;
+}
+.custom-navbar .nav-link:hover {
+    color: #f0f0f0;
+}
+.custom-navbar .navbar-brand img {
+      height: 100px;             /* Tamaño del logo más proporcional a la barra */
+    width: auto;              /* Mantiene proporción */
+    vertical-align: middle;
+}
+.fondo {
+    background-image:  url('../images/fondoPagina.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+/* cambia la letra de toda la barra de navegación  */
+.navbar {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Para que los links se vean más modernos (opcional) */
+.nav-link {
+    font-weight: 500; /* Un poco más gruesa */
+    letter-spacing: 0.5px; /* Un poco de espacio entre letras */
+}
