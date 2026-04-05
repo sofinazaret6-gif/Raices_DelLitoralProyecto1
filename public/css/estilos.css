@@ -38,8 +38,8 @@ a.custom-hover:hover {
 /* Fondo del contenido principal */
 .custom-bg {
     background-color: #f1ebd8; /* Ejemplo: celeste claro */
-    min-height: 90vh; /* Opcional para que cubra más altura */
-    padding: 50px;
+    min-height: 70vh; /* Opcional para que cubra más altura */
+    padding: 40px;
     font-size: 16px; /* tamaño de párrafos en el contenido principal */
 }
 
@@ -67,9 +67,9 @@ a.custom-hover:hover {
     vertical-align: middle;
 }
 .fondo {
-    background-image:  url('../images/fondoPagina.avif');
-    background-size: cover;
-    background-position: center;
+    background-image: url('../images/fondoNuevoR.png');  
+    background-size: cover; /* Cambiado a cover para que llene todo el ancho */
+    background-position: center ; /* Cambiado de 150px a 0 para que suba */
     background-repeat: no-repeat;
-
+    background-color: #f4f4f4;
 }
