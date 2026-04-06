@@ -29,7 +29,7 @@
                     <li class="nav-item"><a class="nav-link" href="/comercializacion">Comercialización</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
                     <li class="nav-item"><a class="nav-link" href="/terminos">Términos y Usos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Catálogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Consultas</a></li>
                 </ul>
             </div>
@@ -38,10 +38,9 @@
 
     <div style="height: 350px; background: transparent;"></div> <!-- Espacio para ver el fondo -->
 
-    <nav  class="navbar navbar-dark mt-5" style="background-color: #e0e28d; margin-top: 150px; margin-bottom: 0;">
-      <div class="container-fluid justify-content-center">
-         @yield('BarraP')
-        </span>
+    <nav  class="navbar navbar-dark mt-5" style="background-color: #43391e; margin-top: 150px; margin-bottom: 0;">
+      <div class="container-fluid justify-content-center text-white">
+         @yield('BarraP') 
       </div>
     </nav>
     
