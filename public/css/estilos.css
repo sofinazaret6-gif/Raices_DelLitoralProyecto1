@@ -31,9 +31,9 @@ a.custom-hover:hover {
 /* Navbar con color personalizado y más alta */
 .custom-navbar {
     background-color: #a5c371; /* Cambia este color al que quieras */
-    padding-top: 15px;        /* Espacio arriba de los enlaces */
-    padding-bottom: 15px;     /* Espacio abajo de los enlaces */
-    min-height: 105px;         /* Altura mínima de la barra */
+    padding-top: 0px;        /* Espacio arriba de los enlaces */
+    padding-bottom: 0px;     /* Espacio abajo de los enlaces */
+    min-height: 100px;         /* Altura mínima de la barra */
 }
 /* Fondo del contenido principal */
 .custom-bg {
@@ -62,7 +62,7 @@ a.custom-hover:hover {
     color: #f0f0f0;
 }
 .custom-navbar .navbar-brand img {
-      height: 100px;             /* Tamaño del logo más proporcional a la barra */
+      height: 250px;             /* Tamaño del logo más proporcional a la barra */
     width: auto;              /* Mantiene proporción */
     vertical-align: middle;
 }

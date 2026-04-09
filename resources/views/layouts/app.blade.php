@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}"> <!-- CAMBIO: para colores -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="fondo"><!-- CAMBIO: bg-light se puede cambiar por una clase propia -->
 
@@ -16,8 +17,7 @@
             <!-- CAMBIO: reemplazo de texto por imagen -->
             <a class="navbar-brand" href="/">
     <img src="{{ asset('images/LogoRaices.png') }}" alt="Logo" class="img-fluid" style="max-height: 150px;">
-</a>
-            </a>
+    </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,11 @@
                     <li class="nav-item"><a class="nav-link" href="/terminos">Términos y Usos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Consultas</a></li>
-                </ul>
+                   </ul>
+                    <div class="d-flex ms-lg-3">
+                     <a href="https://facebook.com" class="nav-link px-2 text-white"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                     <a href="mailto:tuemail@ejemplo.com" class="nav-link px-2 text-white"><i class="fa-solid fa-envelope fa-lg"></i></a>
+                   </div>
             </div>
         </div>
     </nav>
