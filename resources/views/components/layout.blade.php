@@ -26,11 +26,11 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/">Principal</a></li>
                     <li class="nav-item"><a class="nav-link" href="/quienes-somos">Quiénes Somos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/comercializacion">Comercialización</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/terminos">Términos y Usos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/comercializacion">Comercialización</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Consultas</a></li>
+                     <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/terminos">Términos y Usos</a></li>
                    </ul>
                     <div class="d-flex ms-lg-3">
                      <a href="https://facebook.com" class="nav-link px-2 text-white"><i class="fa-brands fa-facebook fa-lg"></i></a>
@@ -58,6 +58,19 @@
     <!-- Footer -->
     <footer class=" custom-footer"><!-- CAMBIO: clase custom-footer para colores  -->
         &copy; 2026 Mi Empresa - Todos los derechos reservados
+        <div class="container">
+  <div class="row">
+    <div class="col-md">
+      terminos y cond
+    </div>
+    <div class="col-md">
+      contacto
+    </div>
+    <div class="col-md">
+     comercializacion 
+    </div>
+  </div>
+</div>
     </footer>
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
