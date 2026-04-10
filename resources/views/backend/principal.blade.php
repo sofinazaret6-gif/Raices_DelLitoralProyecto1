@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<x-layout>
+
 
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
 
@@ -13,13 +14,12 @@
     }
 </style>
 
-@section('title', 'Principal')
+<x-slot:title>Principal</x-slot:title>
 
-@section('BarraP')
-    <h2 class="m-0 py-2">Vivero en Corrientes</h2>
-@endsection
+    <x-slot:barraP>
+        <h4> Vivero en Corrientes </h4>
+    </x-slot:barraP>
 
-@section('content')
 <div class="container-fluid px-5"> <!-- Cambiado a container-fluid para más ancho -->
     <div class="row gx-4 align-items-stretch"> <!-- align-items-stretch iguala las alturas -->
         
@@ -60,6 +60,6 @@
 
     </div>
 </div>
-@endsection
+</x-layout>
 
 

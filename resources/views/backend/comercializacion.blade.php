@@ -1,14 +1,13 @@
-@extends('layouts.app')
+<x-layout>
 
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
 
-@section('title', 'Catalogo')
-@section('BarraP')
- <h2 class="m-0 py-2">Información Comercial</h2>
+  <x-slot:title>Comercialización</x-slot:title>
 
- @endsection
+    <x-slot:barraP>
+        <h4> Informacion Comercial </h4>
+    </x-slot:barraP>
 
- @section('content')
    <p class="lead fs-5">En <strong>Raíces del Litoral</strong> queremos que tu experiencia sea simple, transparente y confiable. A continuación, te explicamos cómo adquirir nuestros productos:</p>
 
     <div class="accordion mt-4" id="accordionComercializacion">
@@ -122,4 +121,4 @@
 
     </div>
 </div>
- @endsection
+</x-layout>

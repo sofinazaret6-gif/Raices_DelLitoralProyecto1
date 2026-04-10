@@ -1,12 +1,10 @@
-@extends('layouts.app')
+<x-layout>
 
-@section('title', 'Quiénes Somos')
+<x-slot:title>Quiénes Somos</x-slot:title>
 
-@section('BarraP')
-<h2 class="m-0 py-2 text-center">Sobre nosotros</h2>
-@endsection
-
-@section('content')
+    <x-slot:barraP>
+        <h2 class="m-0 py-2 text-center">Sobre nosotros</h2>
+    </x-slot:barraP>
 <div class="container d-flex flex-column align-items-center justify-content-center min-vh-50 py-5">
     <div class="col-md-8 text-center shadow-lg p-5 rounded-4 bg-white bg-opacity-75">
         
@@ -45,4 +43,4 @@
 
     </div>
 </div>
-@endsection
+</x-layout>
