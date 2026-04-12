@@ -11,7 +11,9 @@ p.custom-color {
     color: #444444; /* Gris más oscuro que text-secondary */
     font-size: 18px;
 }
-
+.color-navbar {
+    color: #1B4D3E !important; 
+} 
 /* Ajustes de margen/padding especiales */
 .div-especial {
     margin-top: 50px;
@@ -29,7 +31,7 @@ a.custom-hover:hover {
 }
 
 .barraS .custom-navbar{
-    background-color: #f0efef; /* Cambia este color al que quieras */
+    background-color: #f1ebd8; /* Cambia este color al que quieras */
     padding-top: 0px;        /* Espacio arriba de los enlaces */
     padding-bottom: 0px;     /* Espacio abajo de los enlaces */
     min-height: 70px;      /* Altura mínima de la barra */
@@ -80,6 +82,19 @@ a.custom-hover:hover {
     background-position: center 65%; /* Cambiado de 150px a 0 para que suba */
     background-repeat: no-repeat;
     background-color: #f4f4f4;
+}
+ .banner {
+    width: 100%;
+    height: 60vh; /* 🔥 clave */
+    background-image: url('../images/fondoFinal.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+.barra-marron {
+    background-color: #43391e;
+    width: 100%;
 }
 
 

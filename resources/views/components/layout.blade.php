@@ -8,18 +8,17 @@
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}"> <!-- CAMBIO: para colores -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body class="fondo"><!-- CAMBIO: bg-light se puede cambiar por una clase propia -->
      
      <x-navbar />
 
-    <div style="height: 350px; background: transparent;"></div> <!-- Espacio para ver el fondo -->
-
-    <nav  class="navbar navbar-dark mt-5" style="background-color: #43391e; margin-top: 150px; margin-bottom: 0;">
-      <div class="container-fluid justify-content-center text-white">
-        {{ $barraP }}  
-      </div>
-    </nav>
+   <div class="banner d-flex flex-column justify-content-end">
+    <div class="barra-marron text-center text-white py-2">
+        {{ $barraP }}
+    </div>
+    </div>
     
     <!-- CONTENIDO PRINCIPAL DE CADA VISTA -->
    <main class="container-fluid custom-bg ">

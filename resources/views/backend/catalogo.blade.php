@@ -1,4 +1,5 @@
 <x-layout>
+   
     <x-slot:title>Catalogo</x-slot:title>
 
     <x-slot:barraP>

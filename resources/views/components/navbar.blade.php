@@ -4,13 +4,20 @@
     <div class="container d-flex justify-content-between align-items-center">
         <!-- Logo -->
         <a class="navbar-brand" href="/">
-            <img src="{{ asset('images/logoMiniN.png') }}" alt="Logo" class="img-fluid" style="max-height: 80px;">
+            <img src="{{ asset('images/logoRaicesVSF.png') }}" alt="Logo" class="img-fluid" style="max-height: 80px;">
         </a>
-
+       <ul class="navbar-nav mx-auto"> 
+            <li class="nav-item">
+                <a href="/" class="nav-link px-2 color-navbar" ><i class="bi bi-person-fill" style="font-size: 24px"></i> </a>
+             </li>
+                <li class="nav-item">    
+             <a href="/" class="nav-link px-2 color-navbar" > <i class="bi bi-cart3" style="font-size: 24px"></i> </a>
+        </li>
+        </ul>
         <!-- Redes Sociales (visibles siempre) -->
         <div class="d-flex">
-            <a href="https://facebook.com" class="nav-link px-2 text-white"><i class="fa-brands fa-facebook fa-lg"></i></a>
-            <a href="mailto:tuemail@ejemplo.com" class="nav-link px-2 text-white"><i class="fa-solid fa-envelope fa-lg"></i></a>
+            <a href="https://facebook.com" class="nav-link px-2" style="color: #1B4D3E;"><i class="fa-brands fa-facebook fa-lg"></i></a>
+            <a href="mailto:tuemail@ejemplo.com" class="nav-link px-2" style="color: #1B4D3E;"><i class="fa-solid fa-envelope fa-lg"></i></a>
         </div>
     </div>
 </nav>
@@ -31,10 +38,10 @@
                 <li class="nav-item"><a class="nav-link" href="/quienes-somos">Quiénes Somos</a></li>
                 <li class="nav-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Consultas</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
             </ul>
         </div>
     </div>
 </nav>
 </div>
+
 
