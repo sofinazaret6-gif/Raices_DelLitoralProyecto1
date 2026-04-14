@@ -1,126 +1,150 @@
 
  /* estilos.css */
 
-/* Fuente global opcional (Bootstrap ya tiene sans-serif por defecto) */
+/* Fuente global */
 body {
     font-family: Arial, sans-serif;
+    padding-top: 100px; /* 🔥 espacio para ambos navbars */
 }
 
 /* Colores personalizados */
 p.custom-color {
-    color: #444444; /* Gris más oscuro que text-secondary */
+    color: #444444;
     font-size: 18px;
 }
+
 .color-navbar {
     color: #1B4D3E !important; 
-} 
-/* Ajustes de margen/padding especiales */
+}
+
+/* Ajustes especiales */
 .div-especial {
     margin-top: 50px;
     padding: 20px;
 }
 
-/* Efectos extra, ejemplo para botones */
+/* Botones */
 .btn-custom {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Subrayado al pasar el mouse en enlaces fuera del navbar */
+/* Hover links */
 a.custom-hover:hover {
     text-decoration: underline;
 }
 
-.barraS .custom-navbar{
-    background-color: #f1ebd8; /* Cambia este color al que quieras */
-    padding-top: 0px;        /* Espacio arriba de los enlaces */
-    padding-bottom: 0px;     /* Espacio abajo de los enlaces */
-    min-height: 70px;      /* Altura mínima de la barra */
+/* 🔥 NAVBAR SUPERIOR (FIJO) */
+.barraS {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050;
 }
 
-/* Navbar con color personalizado */
-/* Navbar con color personalizado y más alta */
+.barraS .custom-navbar {
+    background-color: #f1ebd8;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    min-height: 70px;
+}
+
+/* 🔥 NAVBAR INFERIOR (FIJO) */
+.barraI {
+    position: fixed !important;
+    top: 70px; /* debajo del superior */
+    left: 0;
+    width: 100%;
+    z-index: 1040;
+}
+
 .barraI .custom-navbar {
-    background-color: #a5c371; /* Cambia este color al que quieras */
-    padding-top: 0px;        /* Espacio arriba de los enlaces */
-    padding-bottom: 0px;     /* Espacio abajo de los enlaces */
-    min-height: 30px        /* Altura mínima de la barra */
-}
-/* Fondo del contenido principal */
-.custom-bg {
-    background-color: #f1ebd8; /* Ejemplo: celeste claro */
-    min-height: 70vh; /* Opcional para que cubra más altura */
-    padding: 40px;
-    font-size: 16px; /* tamaño de párrafos en el contenido principal */
+    background-color: #a5c371;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    min-height: 30px;
 }
 
-/* Footer con color diferente */
+/* Contenido */
+.custom-bg {
+    background-color: #f1ebd8;
+    min-height: 70vh;
+    padding: 40px;
+    font-size: 16px;
+}
+
+/* Footer */
 .custom-footer {
-     background-color: #a5c371; /* Mismo tono que navbar para uniformidad */
+    background-color: #a5c371;
     font-size: 14px;
     color: white;
     text-align: center;
     padding: 15px 0;
 }
+
+/* Links navbar */
 .custom-navbar .nav-link {
-    color: white; /* o el color que quieras */
-    font-size: 18px; /* tamaño de letra de los enlaces de la navbar */
-    font-weight: 600; /* opcional: grosor de la letra */
-    padding-left: 15px;       /* Espacio entre enlaces */
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 15px;
     padding-right: 15px;
 }
+
 .custom-navbar .nav-link:hover {
     color: #f0f0f0;
 }
+
+/* Logo */
 .custom-navbar .navbar-brand img {
-      height: 60px;           /* Tamaño del logo más proporcional a la barra */
-    width: auto;              /* Mantiene proporción */
+    height: 60px;
+    width: auto;
     vertical-align: middle;
 }
+
+/* Fondo general */
 .fondo {
     background-image: url('../images/fondoNuevoR.png');  
-    background-size: cover; /* Cambiado a cover para que llene todo el ancho */
-    background-position: center 65%; /* Cambiado de 150px a 0 para que suba */
+    background-size: cover;
+    background-position: center 65%;
     background-repeat: no-repeat;
     background-color: #f4f4f4;
 }
- .banner {
+
+/* Banner */
+.banner {
     width: 100%;
-    height: 60vh; /* 🔥 clave */
+    height: 60vh;
     background-image: url('../images/fondoFinal.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
 }
+
+/* Barra marrón */
 .barra-marron {
     background-color: #43391e;
     width: 100%;
 }
+/* ===== FIX DEFINITIVO NAVBARS ===== */
 
+.barraS {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+}
 
+.barraI {
+    position: fixed !important;
+    top: 80px !important; /* 🔥 ajustado a tu logo real */
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9998 !important;
+}
 
-        .catalogo .navbar {
-            font-family: "Trebuchet MS", sans-serif;
-        }
-
-        .catalogo .nav-link {
-            text-transform: capitalize; /* Pone la primera letra en mayúscula */
-            font-size: 17px;
-            color: #2c3e50 !important; /* Gris oscuro suave */
-            padding-left: 15px !important;
-            padding-right: 15px !important;
-            transition: color 0.3s ease; /* Suaviza el cambio de color al pasar el mouse */
-        }
-
-        .catalogo .nav-link:hover {
-            color: #27ae60 !important; /* Verde al pasar el mouse */
-        }
-
-        .catalogo.custom-footer {
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 50px;
-            /* Aquí puedes añadir más estilos para tu footer */
-        }
-
-    
+/* 🔥 espacio real para que no se tape contenido */
+body {
+    padding-top: 120px !important;
+}
