@@ -60,6 +60,13 @@
 
     </div>
 </div>
+    <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-text">
+      N
+    </span>
+  </div>
+</nav>
 </x-layout>
 
 
