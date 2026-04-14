@@ -92,7 +92,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Asesoramiento</h5>
                         <p class="card-text">Te ayudamos a elegir y cuidar tus plantas con recomendaciones personalizadas.</p>
-                        <a href="#" class="btn btn-primary">Consultar</a>
+                      <a href="{{ url('/consultas') }}" class="btn btn-success">consultar
+</a>
                     </div>
                 </div>
             </div>
