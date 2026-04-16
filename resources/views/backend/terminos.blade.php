@@ -3,7 +3,7 @@
     <x-slot:title>Términos y Condiciones</x-slot:title>
 
     <x-slot:barraP>
-        <h4> </h4>
+        <h4> Terminos y Usos </h4>
     </x-slot:barraP>
 
     <style>
@@ -25,7 +25,6 @@
 
     <div class="container mt-5">
 
-        <h2 class="mb-4 text-center">Términos y Condiciones</h2>
 
         <div class="accordion" id="accordionTerminos">
 
