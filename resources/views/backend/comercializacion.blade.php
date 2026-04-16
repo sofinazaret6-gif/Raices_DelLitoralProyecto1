@@ -1,124 +1,153 @@
 <x-layout>
 
-<link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+<x-slot:title>Comercialización</x-slot:title>
 
-  <x-slot:title>Comercialización</x-slot:title>
+<x-slot:barraP>
+    <h4>Comercialización</h4>
+</x-slot:barraP>
 
-    <x-slot:barraP>
-        <h4> Informacion Comercial </h4>
-    </x-slot:barraP>
+<style>
+    .accordion-button:not(.collapsed) {
+        background-color: #198754;
+        color: white;
+    }
 
-   <p class="lead fs-5">En <strong>Raíces del Litoral</strong> queremos que tu experiencia sea simple, transparente y confiable. A continuación, te explicamos cómo adquirir nuestros productos:</p>
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: #198754;
+    }
 
-    <div class="accordion mt-4" id="accordionComercializacion">
-        
-        <!-- Venta -->
+    .accordion-button:hover {
+        background-color: #157347;
+        color: white;
+    }
+</style>
+
+<div class="container mt-5">
+
+    <p class="lead fs-5 text-center mb-4">
+        En <strong>Raíces del Litoral</strong> queremos que tu experiencia sea simple, transparente y confiable.
+        A continuación, te explicamos cómo adquirir nuestros productos.
+    </p>
+         <h1 class="display-4 fw-bold mb-2" style="color: #033d1b;">           Información de compra</h1>
+    
+
+    <div class="accordion" id="accordionTerminos">
+
+        <!-- VENTAS -->
         <div class="accordion-item">
-            <h3 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#uno">
                     🌱 Venta Minorista y Mayorista
                 </button>
-            </h3>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionComercializacion">
+            </h2>
+            <div id="uno" class="accordion-collapse collapse show" data-bs-parent="#accordionTerminos">
                 <div class="accordion-body">
                     <p>Realizamos ventas tanto por unidad como al por mayor.</p>
-                    <p>Ofrecemos precios especiales para paisajistas, viveristas, revendedores e instituciones. Si necesitás grandes cantidades, podés contactarnos para recibir una cotización personalizada.</p>
+                    <p>Ofrecemos precios especiales para paisajistas, viveristas, revendedores e instituciones.</p>
                 </div>
             </div>
         </div>
 
+        <!-- PAGOS -->
         <div class="accordion-item">
-    <h3 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            💳 Métodos de Pago
-        </button>
-    </h3>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionComercializacion">
-        <div class="accordion-body">
-            <div class="row align-items-center">
-                <!-- Columna de 4 -->
-                <div class="col-md-4 text-center border-end">
-                    <div class="d-flex flex-wrap justify-content-center gap-3">
-                        <img src="{{ asset('images/visa.png') }}" alt="Visa" style="height: 30px;">
-                        <img src="{{ asset('images/mastercard.png') }}" alt="Mastercard" style="height: 30px;">
-                        <img src="{{ asset('images/mercadoPago.png') }}" alt="Mercado Pago" style="height: 30px;">
-                        <img src="{{ asset('images/bancoCo.png') }}" alt="BanCo" style="height: 25px;">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dos">
+                    💳 Métodos de Pago
+                </button>
+            </h2>
+            <div id="dos" class="accordion-collapse collapse" data-bs-parent="#accordionTerminos">
+                <div class="accordion-body">
+
+                    <div class="row align-items-center">
+
+                        <!-- ICONOS -->
+                        <div class="col-md-4 text-center border-end">
+                            <div class="d-flex flex-wrap justify-content-center gap-3">
+                                <img src="{{ asset('images/visa.png') }}" style="height: 30px;">
+                                <img src="{{ asset('images/mastercard.png') }}" style="height: 30px;">
+                                <img src="{{ asset('images/mercadoPago.png') }}" style="height: 30px;">
+                                <img src="{{ asset('images/bancoCo.png') }}" style="height: 25px;">
+                            </div>
+                            <p class="small text-muted mt-2">Aceptamos todas las tarjetas</p>
+                        </div>
+
+                        <!-- TEXTO -->
+                        <div class="col-md-8">
+                            <p>Aceptamos diferentes formas de pago:</p>
+                            <ul class="mb-0">
+                                <li><strong>Efectivo:</strong> 10% de descuento.</li>
+                                <li><strong>Transferencia:</strong> Consultanos el CBU.</li>
+                                <li><strong>Mercado Pago:</strong> Link de pago.</li>
+                                <li><strong>Tarjetas:</strong> Débito y crédito.</li>
+                            </ul>
+                        </div>
+
                     </div>
-                    <p class="small text-muted mt-2">Aceptamos todas las tarjetas</p>
-                </div>
 
-                <!--  detalle del texto -->
-                <div class="col-md-8 ps-md-4">
-                    <p>Aceptamos diferentes formas de pago para tu comodidad:</p>
-                    <ul class="mb-0">
-                        <li><strong>Efectivo:</strong> 10% de descuento especial en el vivero.</li>
-                        <li><strong>Transferencia bancaria:</strong> Consultanos el CBU por WhatsApp.</li>
-                        <li><strong>Mercado Pago:</strong> Dinero en cuenta o link de pago.</li>
-                        <li><strong>Tarjetas:</strong> Débito y Crédito (consultar cuotas).</li>
-                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-        <!--  Envíos -->
+        <!-- ENVIOS -->
         <div class="accordion-item">
-            <h3 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tres">
                     🚚 Logística y Envíos
                 </button>
-            </h3>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionComercializacion">
+            </h2>
+            <div id="tres" class="accordion-collapse collapse" data-bs-parent="#accordionTerminos">
                 <div class="accordion-body">
-                    <p><strong>Realizamos envíos programados en distintas zonas:</strong></p>
+                    <p><strong>Realizamos envíos en:</strong></p>
                     <ul>
-                        <li>Corrientes Capital (días a coordinar)</li>
+                        <li>Corrientes Capital</li>
                         <li>Laguna Brava, Santa Ana y Paso de la Patria</li>
                     </ul>
-                    <p><strong>Costo de envío:</strong></p>
+
+                    <p><strong>Costo:</strong></p>
                     <ul>
-                        <li>Sin cargo en compras superiores a un monto determinado.</li>
-                        <li>Para pedidos menores, se aplica un costo fijo según la zona.</li>
+                        <li>Gratis en compras grandes</li>
+                        <li>Costo fijo para pedidos menores</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!--  Retiro -->
+        <!-- RETIRO -->
         <div class="accordion-item">
-            <h3 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cuatro">
                     📦 Retiro en Vivero
                 </button>
-            </h3>
-            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionComercializacion">
+            </h2>
+            <div id="cuatro" class="accordion-collapse collapse" data-bs-parent="#accordionTerminos">
                 <div class="accordion-body">
-                    <p>También podés retirar tu pedido directamente en nuestro vivero físico.</p>
-                    <p><strong>Horario de atención:</strong> A coordinar previamente para asegurar la preparación de tu compra.</p>
+                    <p>Podés retirar tu pedido directamente en nuestro vivero.</p>
+                    <p><strong>Horario:</strong> A coordinar previamente.</p>
                 </div>
             </div>
         </div>
 
-        <!--  Sanidad -->
+        <!-- GARANTIA -->
         <div class="accordion-item">
-            <h3 class="accordion-header" id="headingFive">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cinco">
                     ✅ Garantía de Sanidad
                 </button>
-            </h3>
-            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionComercializacion">
+            </h2>
+            <div id="cinco" class="accordion-collapse collapse" data-bs-parent="#accordionTerminos">
                 <div class="accordion-body">
-                    <p>Todas nuestras plantas se entregan:</p>
                     <ul>
-                        <li>Libres de plagas.</li>
-                        <li>En óptimas condiciones.</li>
-                        <li>Aclimatadas al clima cálido y húmedo de la región.</li>
+                        <li>Plantas libres de plagas</li>
+                        <li>En óptimas condiciones</li>
+                        <li>Adaptadas al clima local</li>
                     </ul>
                 </div>
             </div>
         </div>
 
     </div>
+
 </div>
+
 </x-layout>
