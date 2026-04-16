@@ -60,13 +60,12 @@
 
     </div>
 </div>
-    <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <span class="navbar-text">
-      N
-    </span>
-  </div>
-</nav>
+          <div class="alert alert-secondary" role="alert">
+    ¿Querés conocernos mejor? 
+    <a href="/quienes-somos" class="alert-link">Visitá nuestra sección “Quiénes somos”</a> 
+    y descubrí nuestra historia.
+</div>
+
 </x-layout>
 
 
