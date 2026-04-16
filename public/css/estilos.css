@@ -67,10 +67,25 @@ a.custom-hover:hover {
 
 /* Contenido */
 .custom-bg {
-    background-color: #f1ebd8;
+    background-color: rgba(241, 235, 216, 0.9);
     min-height: 70vh;
     padding: 40px;
     font-size: 16px;
+    position: relative; /* IMPORTANTE */
+     z-index: 1;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url('/images/fondoPrincipal.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    z-index: -1;
+}
+.container {
+    background: transparent !important;
 }
 
 /* Footer */

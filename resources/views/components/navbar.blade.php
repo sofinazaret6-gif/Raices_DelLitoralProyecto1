@@ -50,7 +50,7 @@
                 <li class="nav-item"><a class="nav-link" href="/">Principal</a></li>
                 <li class="nav-item"><a class="nav-link" href="/quienes-somos">Quiénes Somos</a></li>
                 <li class="nav-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Consultas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/consultas">Consultas</a></li>
             </ul>
         </div>
     </div>

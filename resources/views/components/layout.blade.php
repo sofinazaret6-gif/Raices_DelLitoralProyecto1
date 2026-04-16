@@ -21,7 +21,7 @@
     </div>
     
     <!-- CONTENIDO PRINCIPAL DE CADA VISTA -->
-   <main class="container-fluid custom-bg ">
+  <main class="container-fluid custom-bg">
     <div class="container">
          {{ $slot }}
     </div>
