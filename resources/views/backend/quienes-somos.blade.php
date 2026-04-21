@@ -72,6 +72,44 @@
         </div>
 
     </div>
+    <!-- SERVICIOS -->
+<div class="container py-5 text-center">
+
+    <h2 class="fw-bold mb-5" style="color:#27ae60;">¿Qué ofrecemos?</h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="p-4 shadow rounded-4 hover-card h-100">
+                <h4>🍊 Frutales</h4>
+                <p>Árboles listos para crecer y dar frutos.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="p-4 shadow rounded-4 hover-card h-100">
+                <h4>🌸 Aromáticas</h4>
+                <p>Perfume natural para tu hogar.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="p-4 shadow rounded-4 hover-card h-100">
+                <h4>🌱 Insumos</h4>
+                <p>Tierra fértil y abonos orgánicos.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="p-4 shadow rounded-4 hover-card h-100">
+                <h4>👨‍🌾 Asesoramiento</h4>
+                <p>Te ayudamos a cuidar tus plantas.</p>
+            </div>
+        </div>
+
+     
+
+         </div>
 </div>
 
 </x-layout>
