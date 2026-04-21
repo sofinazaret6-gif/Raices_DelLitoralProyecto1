@@ -15,7 +15,7 @@ class ContactoController extends Controller
             'consulta' => 'required'
         ]);
 
-        return view('backend.exito', [
+        return view('frontend.exito', [
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'email' => $request->email,

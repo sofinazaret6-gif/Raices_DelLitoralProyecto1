@@ -11,9 +11,9 @@
             <!-- Íconos centro -->
             <ul class="navbar-nav mx-auto"> 
                 <li class="nav-item">
-                    <a href="/" class="nav-link px-2 color-navbar">
-                        <i class="bi bi-person-fill" style="font-size: 24px"></i>
-                    </a>
+                   <a href="{{ route('registrarse') }}" class="nav-link px-2 color-navbar">
+                          <i class="bi bi-person-fill" style="font-size: 24px"></i>
+                        </a>
                 </li>
                 <li class="nav-item">    
                     <a href="/" class="nav-link px-2 color-navbar">
