@@ -116,15 +116,6 @@ body::before {
     vertical-align: middle;
 }
 
-/* Fondo general */
-.fondo {
-    background-image: url('../images/fondoNuevoR.png');  
-    background-size: cover;
-    background-position: center 65%;
-    background-repeat: no-repeat;
-    background-color: #f4f4f4;
-}
-
 /* Banner */
 .banner {
     width: 100%;
@@ -161,4 +152,57 @@ body::before {
 /* 🔥 espacio real para que no se tape contenido */
 body {
     padding-top: 120px !important;
+}
+
+
+
+
+/* Tarjeta de contacto personalizada */
+.card-custom {
+    background-color: rgba(255, 255, 255, 0.9); /* Blanco con un poco de transparencia para que se vea el fondo */
+    border: 2px solid #27ae60; /* Borde verde como tu título */
+    border-radius: 15px;
+    padding: 30px;
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card-custom:hover {
+    transform: translateY(-5px); /* Efecto sutil al pasar el mouse */
+}
+
+/* Estilo para los ítems de información */
+.info-item {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+.info-item strong {
+    color: #1B4D3E; /* El verde oscuro que usás en el navbar */
+}
+
+/* Botón verde personalizado */
+.btn-verde {
+    background-color: #27ae60;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-verde:hover {
+    background-color: #1e8449;
+    color: white;
+}
+
+/* Estilo para la imagen */
+.img-hover {
+    border-radius: 15px;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
