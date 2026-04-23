@@ -85,45 +85,56 @@
 
     <div class="row">
 
-        <!-- PRODUCTO 1 -->
         <div class="col-md-4 mb-4">
             <a href="/comercializacion" class="text-decoration-none text-dark">
-                <div class="card producto-card h-100 text-center p-3">
-                    <img src="{{ asset('images/tiendaPlantas.jpg') }}" 
-                         class="img-fluid rounded mb-3 producto-img">
-                    <h5 class="fw-bold">Limonero</h5>
-                    <p class="text-success fw-bold">$5000</p>
+                <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
+                    <div style="height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <img src="{{ asset('images/limoneroNuevo.png') }}" 
+                             class="img-fluid rounded producto-img" 
+                             style="max-height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="mt-3">
+                        <h5 class="fw-bold">Limonero</h5>
+                        <p class="text-success fw-bold">$5000</p>
+                    </div>
                 </div>
             </a>
         </div>
 
-        <!-- PRODUCTO 2 -->
         <div class="col-md-4 mb-4">
             <a href="/comercializacion" class="text-decoration-none text-dark">
-                <div class="card producto-card h-100 text-center p-3">
-                    <img src="{{ asset('images/fotoSubir.jpg') }}" 
-                         class="img-fluid rounded mb-3 producto-img">
-                    <h5 class="fw-bold">Planta Aromática</h5>
-                    <p class="text-success fw-bold">$3000</p>
+                <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
+                    <div style="height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <img src="{{ asset('images/lavanda.png') }}" 
+                             class="img-fluid rounded producto-img" 
+                             style="max-height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="mt-3">
+                        <h5 class="fw-bold">Planta Aromática</h5>
+                        <p class="text-success fw-bold">$3000</p>
+                    </div>
                 </div>
             </a>
         </div>
 
-        <!-- PRODUCTO 3 -->
         <div class="col-md-4 mb-4">
             <a href="/comercializacion" class="text-decoration-none text-dark">
-                <div class="card producto-card h-100 text-center p-3">
-                    <img src="{{ asset('images/tiendaPlantas.jpg') }}" 
-                         class="img-fluid rounded mb-3 producto-img">
-                    <h5 class="fw-bold">Tierra Orgánica</h5>
-                    <p class="text-success fw-bold">$2500</p>
+                <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
+                    <div style="height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <img src="{{ asset('images/tierraNuevo.png') }}" 
+                             class="img-fluid rounded producto-img" 
+                             style="max-height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="mt-3">
+                        <h5 class="fw-bold">Tierra Orgánica</h5>
+                        <p class="text-success fw-bold">$2500</p>
+                    </div>
                 </div>
             </a>
         </div>
 
     </div>
 
-    <!-- BOTÓN -->
     <div class="text-center mt-4">
         <a href="/comercializacion" class="btn btn-success rounded-pill px-5 py-2">
             Ver todo el catálogo →
