@@ -1,37 +1,7 @@
 <x-layout>
 
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-
-<style>
-.contenedor-blanco {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4px);
-}
-
-.img-efecto {
-    transition: all 0.4s ease;
-}
-.img-efecto:hover {
-    transform: scale(1.04);
-}
-
-.badge-beneficio {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    padding: 10px 18px;
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-}
-.badge-beneficio:hover {
-    background-color: #c8e6c9;
-    transform: translateY(-3px);
-}
-</style>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
 <x-slot:title>Principal</x-slot:title>
 
