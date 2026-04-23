@@ -3,7 +3,7 @@
     <x-slot:title>Catalogo</x-slot:title>
 
     <x-slot:barraP>
-        <h4>EXPLORAR</h4>
+        <h4>Explorar</h4>
     </x-slot:barraP>
 
     <!-- CAROUSEL -->

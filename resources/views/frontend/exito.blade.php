@@ -3,7 +3,7 @@
     <x-slot:title>Éxito</x-slot:title>
 
     <x-slot:barraP>
-        <h4>EXPLORAR</h4>
+        <h4>Consulta Enviada</h4>
     </x-slot:barraP>
 
     <div class="container mt-5">

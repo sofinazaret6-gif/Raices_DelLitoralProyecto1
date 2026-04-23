@@ -3,7 +3,7 @@
 <x-slot:title>Comercialización</x-slot:title>
 
 <x-slot:barraP>
-    <h4>Comercialización</h4>
+    <h4>Comercializacion</h4>
 </x-slot:barraP>
 
 <style>

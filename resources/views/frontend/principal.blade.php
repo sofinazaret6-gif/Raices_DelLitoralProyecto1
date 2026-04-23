@@ -1,7 +1,37 @@
 <x-layout>
 
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+<style>
+.contenedor-blanco {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+}
+
+.img-efecto {
+    transition: all 0.4s ease;
+}
+.img-efecto:hover {
+    transform: scale(1.04);
+}
+
+.badge-beneficio {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.badge-beneficio:hover {
+    background-color: #c8e6c9;
+    transform: translateY(-3px);
+}
+</style>
 
 <x-slot:title>Principal</x-slot:title>
 
@@ -16,10 +46,15 @@
         <!-- TEXTO -->
         <div class="col-lg-6 mb-4">
             <div class="contenedor-blanco h-100 d-flex flex-column justify-content-center p-4">
-                <h2 class="fw-bold">¡Bienvenidos a Nuestra Página Web!</h2>
+                <h2 class="fw-bold mb-3">¡Bienvenidos a Raíces del Litoral!</h2>
                 <p class="fs-5">
-                    <strong>Raíces del Litoral</strong> es tu vivero en Corrientes. 
-                    Te ayudamos a crear tu espacio verde con plantas adaptadas al clima local.
+                    Somos tu <strong>vivero de confianza en Corrientes</strong>. Nos especializamos en la venta de 
+                    plantas adaptadas a nuestro clima para asegurar que tu jardín crezca con fuerza.
+                </p>
+                <p class="text-muted">
+                    Explora nuestra variedad de <strong>árboles frutales</strong>, plantas de interior y 
+                    aromáticas. Además, encontrá las <strong>macetas y accesorios</strong> ideales para 
+                    darle ese toque único a tu hogar.
                 </p>
             </div>
         </div>

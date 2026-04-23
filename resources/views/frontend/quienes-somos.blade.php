@@ -3,7 +3,7 @@
 <x-slot:title>Quiénes Somos</x-slot:title>
 
 <x-slot:barraP>
-    <h2 class="m-0 py-2 text-center">Sobre nosotros</h2>
+    <h4 class="m-0 py-2 text-center">Sobre nosotros</h4>
 </x-slot:barraP>
 
 <div class="container py-5">
