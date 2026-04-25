@@ -6,72 +6,36 @@
     <h4 class="m-0 py-2 text-center">Sobre nosotros</h4>
 </x-slot:barraP>
 
-<div class="container py-5">
-    <div class="row align-items-center">
+<div class="sobre-nosotros d-flex align-items-center justify-content-center">
 
-        <!-- TEXTO -->
-        <div class="col-md-6 mb-4">
-            <div class="text-center shadow-lg p-5 rounded-4 bg-white bg-opacity-75">
-                
-                <h1 class="display-4 fw-bold mb-4" style="color: #27ae60;">Raíces del Litoral</h1>
-                
-                <p class="lead fs-4 mb-4">
-                    Desde el corazón de <strong>Corrientes</strong>, cultivamos vida y compartimos la esencia de nuestra tierra con vos.
-                </p>
-                
-                <div class="row g-4 text-start">
-                    <div class="col-6">
-                        <ul class="list-unstyled fs-5">
-                            <li>🌿 <strong>Plantas Frutales:</strong> Cítricos y nativas listas para dar fruto.</li>
-                            <li>🌸 <strong>Aromas únicos:</strong> Plantas aromáticas para tu jardín.</li>
-                        </ul>
-                    </div>
-                    <div class="col-6">
-                        <ul class="list-unstyled fs-5">
-                            <li>🌱 <strong>Insumos:</strong> Tierra fértil y abonos orgánicos.</li>
-                            <li>🏡 <strong>Asesoramiento:</strong> Te ayudamos a que tu rincón verde prospere.</li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="sobre-nosotros d-flex align-items-center justify-content-center">
 
-                <hr class="my-4" style="border-color: #27ae60;">
+    <div class="contenedor-info">
 
-                <p class="fs-5 mb-4">
-                    "No solo vendemos plantas, entregamos un pedacito de la naturaleza correntina en cada maceta."
-                </p>
-
-                <a href="{{ url('/comercializacion') }}" 
-                   class="btn btn-success btn-lg px-5 py-3 rounded-pill shadow-sm"
-                   style="background-color: #27ae60; border: none;">
-                    Ver Productos
-                </a>
-
-            </div>
+        <div class="card-info">
+            <h3 class="titulo-verde">Raíces del Litoral</h3>
+            <p>
+                Somos un vivero ubicado en <span class="texto-destacado">Corrientes Capital</span>, inspirado en la riqueza natural del litoral. 
+                Cultivamos cada planta con <span class="texto-destacado">dedicación y compromiso</span>, transmitiendo nuestra 
+                <span class="texto-destacado">conexión con la naturaleza</span> en cada espacio verde.
+            </p>
         </div>
 
-        <!-- MAPA EN TARJETA -->
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-lg rounded-4 border-0">
-
-                <div class="card-body text-center">
-                    <h1 class="display-4 fw-bold mb-2" style="color: #27ae60;">📍Nuestra Ubicacion</h1>
-
-                    <div class="rounded-3 overflow-hidden">
-                        <iframe 
-                            src="https://www.google.com/maps?q=Corrientes,Argentina&output=embed"
-                            width="100%" 
-                            height="350" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
-
-            </div>
+        <div class="card-info">
+            <h3 class="titulo-verde">Nuestra Selección</h3>
+            <p>
+                Contamos con <span class="texto-destacado">plantas florales, frutales y aromáticas</span>, junto con macetas e insumos 
+                para su cuidado. Acompañamos a cada cliente para que pueda <span class="texto-destacado">crear</span> y disfrutar su 
+                propio <span class="texto-destacado">rincón natural</span>.
+            </p>
         </div>
 
     </div>
+
+</div>
+
+</div>
+       
     <!-- SERVICIOS -->
 <div class="container py-5 text-center">
 

@@ -229,5 +229,109 @@ body {
     background-color: #c8e6c9;
     transform: translateY(-3px);
 }
+/* ===== SOBRE NOSOTROS ===== */
+/* 🌿 Sección SOBRE NOSOTROS */
+.sobre-nosotros {
+    position: relative;
+
+    background-image: url('/images/QSfinal.png');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+
+    /* 🔥 EFECTO GLASS + ELEVACIÓN */
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.12),
+        0 5px 15px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
 
+/* ✨ brillo superior */
+.sobre-nosotros::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.4),
+        transparent
+    );
+
+    border-radius: 25px 25px 0 0;
+    pointer-events: none;
+}
+
+
+/* 📦 Contenedor de cards */
+.contenedor-info {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 250px;
+    flex-wrap: wrap;
+
+    width: 100%;
+    max-width: 1200px;
+}
+
+
+/* 🧊 Cards estilo glass */
+.card-info {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    padding: 30px;
+    border-radius: 18px;
+    width: 320px;
+
+    text-align: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+    transition: all 0.3s ease;
+}
+
+
+/* 🚀 Hover PRO */
+.card-info:hover {
+    transform: translateY(-10px) scale(1.02);
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+
+/* 📝 Textos */
+.card-info h3 {
+    color: #2f3e2f;
+}
+
+.card-info p {
+    color: #3f4f3f;
+}
