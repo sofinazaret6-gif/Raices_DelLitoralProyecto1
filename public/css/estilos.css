@@ -265,12 +265,12 @@ body {
 /* ✨ brillo superior */
 .sobre-nosotros::after {
     content: "";
-    position: absolute;
+    height: 100px;
+ position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
-
+   
     background: linear-gradient(
         to bottom,
         rgba(255,255,255,0.4),
@@ -334,4 +334,13 @@ body {
 
 .card-info p {
     color: #3f4f3f;
+}
+.titulo-verde {
+    color: #1B4D3E; /* verde oscuro elegante */
+    font-weight: 600;
+}
+
+.texto-destacado {
+    font-weight: 700;
+    color: #000000; /* negro fuerte */
 }
