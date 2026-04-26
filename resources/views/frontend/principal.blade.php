@@ -86,7 +86,7 @@
     <div class="row">
 
         <div class="col-md-4 mb-4">
-            <a href="/comercializacion" class="text-decoration-none text-dark">
+            <a href="/catalogo" class="text-decoration-none text-dark">
                 <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
                     <div style="height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                         <img src="{{ asset('images/limoneroNuevo.png') }}" 
@@ -102,7 +102,7 @@
         </div>
 
         <div class="col-md-4 mb-4">
-            <a href="/comercializacion" class="text-decoration-none text-dark">
+            <a href="/catalogo" class="text-decoration-none text-dark">
                 <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
                     <div style="height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                         <img src="{{ asset('images/lavanda.png') }}" 
@@ -118,7 +118,7 @@
         </div>
 
         <div class="col-md-4 mb-4">
-            <a href="/comercializacion" class="text-decoration-none text-dark">
+            <a href="/catalogo" class="text-decoration-none text-dark">
                 <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
                     <div style="height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                         <img src="{{ asset('images/tierraNuevo.png') }}" 
@@ -144,17 +144,15 @@
 </div>
 
 
-<!-- NUEVA SECCIÓN (LA QUE QUERÍAS) -->
+<!-- Consulta SECCIÓN  -->
 <div class="container my-5">
     <div class="row align-items-center">
 
-        <!-- IMAGEN (usa una que ya existe) -->
         <div class="col-lg-6 mb-4">
             <img src="{{ asset('images/tiendaPlantas.jpg') }}" 
                  class="img-fluid rounded-4 shadow w-100 img-efecto">
         </div>
 
-        <!-- TEXTO -->
         <div class="col-lg-6 mb-4">
 
             <p class="text-uppercase fw-bold text-success small mb-2">
@@ -176,7 +174,7 @@
             </div>
 
             <a href="/consultas" class="btn btn-success rounded-pill px-4">
-                Obtener más información →
+                Realizar consulta →
             </a>
 
         </div>
@@ -184,7 +182,7 @@
     </div>
 </div>
 
-<!-- LINK QUIENES SOMOS (MEJORADO) -->
+<!-- QUIENES SOMOS  -->
 <div class="text-center my-5">
     <p class="fs-5">
         ¿Querés conocernos mejor?

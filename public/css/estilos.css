@@ -4,7 +4,7 @@
 /* Fuente global */
 body {
     font-family: Arial, sans-serif;
-    padding-top: 100px; /* 🔥 espacio para ambos navbars */
+    padding-top: 100px; 
 }
 
 /* Colores personalizados */
@@ -33,7 +33,7 @@ a.custom-hover:hover {
     text-decoration: underline;
 }
 
-/* 🔥 NAVBAR SUPERIOR (FIJO) */
+/* NAVBAR SUP(FIJO) */
 .barraS {
     position: fixed !important;
     top: 0;
@@ -49,10 +49,10 @@ a.custom-hover:hover {
     min-height: 70px;
 }
 
-/* 🔥 NAVBAR INFERIOR (FIJO) */
+/* NAVBAR INF (FIJO) */
 .barraI {
     position: fixed !important;
-    top: 70px; /* debajo del superior */
+    top: 70px; 
     left: 0;
     width: 100%;
     z-index: 1040;
@@ -131,7 +131,7 @@ body::before {
     background-color: #43391e;
     width: 100%;
 }
-/* ===== FIX DEFINITIVO NAVBARS ===== */
+/* FIX  NAVBARS*/
 
 .barraS {
     position: fixed !important;
@@ -143,13 +143,12 @@ body::before {
 
 .barraI {
     position: fixed !important;
-    top: 80px !important; /* 🔥 ajustado a tu logo real */
+    top: 80px !important; 
     left: 0 !important;
     width: 100% !important;
     z-index: 9998 !important;
 }
 
-/* 🔥 espacio real para que no se tape contenido */
 body {
     padding-top: 120px !important;
 }
@@ -157,10 +156,10 @@ body {
 
 
 
-/* Tarjeta de contacto personalizada */
+/* Tarjeta de contacto */
 .card-custom {
-    background-color: rgba(255, 255, 255, 0.9); /* Blanco con un poco de transparencia para que se vea el fondo */
-    border: 2px solid #27ae60; /* Borde verde como tu título */
+    background-color: rgba(255, 255, 255, 0.9); 
+    border: 2px solid #27ae60; 
     border-radius: 15px;
     padding: 30px;
     height: 100%;
@@ -169,7 +168,7 @@ body {
 }
 
 .card-custom:hover {
-    transform: translateY(-5px); /* Efecto sutil al pasar el mouse */
+    transform: translateY(-5px); /* Efecto mouse */
 }
 
 /* Estilo para los ítems de información */
@@ -180,10 +179,9 @@ body {
 }
 
 .info-item strong {
-    color: #1B4D3E; /* El verde oscuro que usás en el navbar */
+    color: #1B4D3E; /* El verde oscuro navbar */
 }
 
-/* Botón verde personalizado */
 .btn-verde {
     background-color: #27ae60;
     color: white;
@@ -229,8 +227,7 @@ body {
     background-color: #c8e6c9;
     transform: translateY(-3px);
 }
-/* ===== SOBRE NOSOTROS ===== */
-/* 🌿 Sección SOBRE NOSOTROS */
+/*  SOBRE NOSOTROS  */
 .sobre-nosotros {
     position: relative;
 
@@ -247,7 +244,7 @@ body {
     justify-content: center;
     padding: 80px 20px;
 
-    /* 🔥 EFECTO GLASS + ELEVACIÓN */
+
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -262,7 +259,7 @@ body {
 }
 
 
-/* ✨ brillo superior */
+/* brillo superior */
 .sobre-nosotros::after {
     content: "";
     height: 100px;
@@ -282,7 +279,7 @@ body {
 }
 
 
-/* 📦 Contenedor de cards */
+/* cards */
 .contenedor-info {
     position: relative;
     z-index: 2;
@@ -298,7 +295,6 @@ body {
 }
 
 
-/* 🧊 Cards estilo glass */
 .card-info {
     background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(15px);
@@ -318,7 +314,6 @@ body {
 }
 
 
-/* 🚀 Hover PRO */
 .card-info:hover {
     transform: translateY(-10px) scale(1.02);
 
@@ -327,7 +322,7 @@ body {
 }
 
 
-/* 📝 Textos */
+/* Textos */
 .card-info h3 {
     color: #2f3e2f;
 }
@@ -336,11 +331,11 @@ body {
     color: #3f4f3f;
 }
 .titulo-verde {
-    color: #1B4D3E; /* verde oscuro elegante */
+    color: #1B4D3E; 
     font-weight: 600;
 }
 
 .texto-destacado {
     font-weight: 700;
-    color: #000000; /* negro fuerte */
+    color: #000000; 
 }
