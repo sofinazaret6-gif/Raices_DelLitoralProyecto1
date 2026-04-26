@@ -136,7 +136,7 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="/comercializacion" class="btn btn-success rounded-pill px-5 py-2">
+        <a href="/catalogo" class="btn btn-success rounded-pill px-5 py-2">
             Ver todo el catálogo →
         </a>
     </div>
