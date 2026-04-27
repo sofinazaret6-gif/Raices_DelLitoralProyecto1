@@ -7,16 +7,17 @@
 </x-slot:barraP>
 
 <style>
+    /* Color del botón activo del acordeón */
     .accordion-button:not(.collapsed) {
         background-color: #198754;
         color: white;
     }
-
+      /* Quita el borde azul al hacer foco */
     .accordion-button:focus {
         box-shadow: none;
         border-color: #198754;
     }
-
+     /* Efecto hover en botones */
     .accordion-button:hover {
         background-color: #157347;
         color: white;
@@ -31,7 +32,7 @@
     </p>
          <h1 class="display-4 fw-bold mb-2" style="color: #033d1b;">           Información de compra</h1>
     
-
+      <!-- Acordeón -->
     <div class="accordion" id="accordionTerminos">
 
         <!-- VENTAS -->

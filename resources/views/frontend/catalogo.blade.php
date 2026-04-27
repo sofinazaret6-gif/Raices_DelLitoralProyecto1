@@ -5,7 +5,7 @@
     <x-slot:barraP>
         <h4>EXPLORAR CATEGORÍAS</h4>
     </x-slot:barraP>
-
+   <!-- Carrusel de imágenes (Bootstrap) -->
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-
+   <!-- Notificación tipo "toast" (mensaje emergente) -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
         <div id="miToast" class="toast" data-bs-autohide="false">
             <div class="toast-header">
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-
+   <!-- Sección principal: categorías -->
     <div class="container mt-5">
         <div class="text-center mb-5">
             <h2 class="fw-bold" style="color:#1e3d2f;">Nuestras Categorías</h2>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="row">
-
+         <!-- Card de categoría (ejemplo: Frutales) -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm border-0">
                     <div style="height: 200px; overflow: hidden;">
@@ -125,7 +125,7 @@
 
         </div>
     </div>
-
+   <!-- Script para mostrar el toast automáticamente -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const toastEl = document.getElementById('miToast');

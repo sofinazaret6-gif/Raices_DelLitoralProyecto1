@@ -8,10 +8,9 @@
 
 <div class="sobre-nosotros d-flex align-items-center justify-content-center">
 
-    <div class="sobre-nosotros d-flex align-items-center justify-content-center">
-
+   <!-- Contenedor de tarjetas -->
     <div class="contenedor-info">
-
+            <!-- Card 1 -->
         <div class="card-info">
             <h3 class="titulo-verde">Raíces del Litoral</h3>
             <p>
@@ -20,7 +19,7 @@
                 <span class="texto-destacado">conexión con la naturaleza</span> en cada espacio verde.
             </p>
         </div>
-
+     <!-- Card 2 -->
         <div class="card-info">
             <h3 class="titulo-verde">Nuestra Selección</h3>
             <p>

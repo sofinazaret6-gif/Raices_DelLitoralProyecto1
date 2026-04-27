@@ -7,16 +7,17 @@
     </x-slot:barraP>
 
     <style>
+         /* Botón activo */
         .accordion-button:not(.collapsed) {
             background-color: #198754;
             color: white;
         }
-
+          /* Quita borde azul al hacer click */
         .accordion-button:focus {
             box-shadow: none;
             border-color: #198754;
         }
-
+        /* Efecto hover */
         .accordion-button:hover {
             background-color: #157347;
             color: white;
@@ -25,16 +26,18 @@
 
     <div class="container mt-5">
 
-
+      <!-- Acordeón -->
         <div class="accordion" id="accordionTerminos">
 
             <!-- Uso del sitio -->
             <div class="accordion-item">
                 <h2 class="accordion-header">
+                      <!-- Botón que abre/cierra -->
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#uno">
                         Uso del sitio
                     </button>
                 </h2>
+                  <!-- Contenido (visible por defecto) -->
                 <div id="uno" class="accordion-collapse collapse show" data-bs-parent="#accordionTerminos">
                     <div class="accordion-body">
                         El usuario se compromete a utilizar este sitio de manera responsable, evitando acciones que puedan afectar su funcionamiento.

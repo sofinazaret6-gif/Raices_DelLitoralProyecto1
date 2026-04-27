@@ -7,8 +7,9 @@
     </x-slot:barraP>
 
     <div class="container mt-5">
+        <!-- Título del formulario -->
         <h2>CONSULTANOS</h2>
-
+      <!-- Formulario -->
         <form action="{{ url('/contacto') }}" method="POST">
             @csrf
 
@@ -32,10 +33,11 @@
                 <label class="form-label">Tipo de consulta</label>
 
                 <div class="dropdown">
+                    <!-- Botón que muestra la opción elegida -->
                     <button id="btnTipo" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         Seleccionar tipo
                     </button>
-
+                     <!-- Opciones -->
                     <ul class="dropdown-menu">
                         <li>
                             <a class="dropdown-item" href="#" onclick="setTipo('Consulta')">Consulta</a>
@@ -49,15 +51,15 @@
                     </ul>
                 </div>
 
-                <!-- INPUT OCULTO -->
+                <!-- INPUT OCULTO, GUARDA VALOR-->
                 <input type="hidden" name="tipo" id="tipoSeleccionado">
             </div>
-
+             <!-- Mensaje -->
             <div class="mb-3">
                 <label class="form-label">Consulta</label>
                 <textarea class="form-control" name="consulta" rows="4"></textarea>
             </div>
-
+              <!-- Botón enviar -->
             <button type="submit" class="btn btn-primary">
                 Enviar
             </button>
@@ -65,7 +67,7 @@
         </form>
     </div>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPT PARA GUARDAR OPCION ELEGIDA -->
     <script>
         function setTipo(valor) {
             document.getElementById('tipoSeleccionado').value = valor;

@@ -1,5 +1,6 @@
 <!-- NAV SUPERIOR FIJO -->
 <div class="barraS">
+     <!-- Navbar principal: logo + íconos + redes -->
     <nav class="navbar navbar-expand-lg custom-navbar py-1">
         <div class="container d-flex justify-content-between align-items-center">
             
@@ -8,7 +9,7 @@
                 <img src="{{ asset('images/logoRaicesVSF.png') }}" alt="Logo" class="img-fluid" style="max-height: 80px;">
             </a>
 
-            <!-- Íconos centro -->
+            <!-- Íconos centro (usuario y carrito) -->
             <ul class="navbar-nav mx-auto"> 
                 <li class="nav-item">
                    <a href="{{ route('registrarse') }}" class="nav-link px-2 color-navbar">
@@ -27,7 +28,7 @@
                 <a href="https://facebook.com" class="nav-link px-2" style="color: #1B4D3E;">
                     <i class="fa-brands fa-facebook fa-lg"></i>
                 </a>
-                <a href="mailto:tuemail@ejemplo.com" class="nav-link px-2" style="color: #1B4D3E;">
+                <a href="mailto:raicesdellitoral@gmail.com" class="nav-link px-2" style="color: #1B4D3E;">
                     <i class="fa-solid fa-envelope fa-lg"></i>
                 </a>
             </div>
@@ -40,11 +41,12 @@
  <div class="barraI">
 <nav class="navbar navbar-expand-lg custom-navbar py-0" style="border-top: 1px solid rgba(255,255,255,0.1);">
     <div class="container">
+        <!-- Botón para responsive -->
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+        <!-- Links de navegación -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto"> <!-- 'mx-auto' para centrar los links -->
                 <li class="nav-item"><a class="nav-link" href="/">Principal</a></li>

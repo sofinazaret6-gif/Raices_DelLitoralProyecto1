@@ -1,38 +1,5 @@
 <x-layout>
 
-<link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-
-<style>
-.contenedor-blanco {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4px);
-}
-
-.img-efecto {
-    transition: all 0.4s ease;
-}
-.img-efecto:hover {
-    transform: scale(1.04);
-}
-
-.badge-beneficio {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    padding: 10px 18px;
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-}
-.badge-beneficio:hover {
-    background-color: #c8e6c9;
-    transform: translateY(-3px);
-}
-</style>
-
 <x-slot:title>Principal</x-slot:title>
 
 <x-slot:barraP>
@@ -43,14 +10,16 @@
 <div class="container-fluid px-5">
     <div class="row gx-4 align-items-stretch">
         
-        <!-- TEXTO -->
+        <!-- COLUMNA IZQUIERDA: TEXTO -->
         <div class="col-lg-6 mb-4">
             <div class="contenedor-blanco h-100 d-flex flex-column justify-content-center p-4">
                 <h2 class="fw-bold mb-3">¡Bienvenidos a Raíces del Litoral!</h2>
+                <!-- Descripción -->
                 <p class="fs-5">
                     Somos tu <strong>vivero de confianza en Corrientes</strong>. Nos especializamos en la venta de 
                     plantas adaptadas a nuestro clima para asegurar que tu jardín crezca con fuerza.
                 </p>
+                 <!-- Información adicional -->
                 <p class="text-muted">
                     Explora nuestra variedad de <strong>árboles frutales</strong>, plantas de interior y 
                     aromáticas. Además, encontrá las <strong>macetas y accesorios</strong> ideales para 
@@ -59,7 +28,7 @@
             </div>
         </div>
 
-        <!-- IMÁGENES -->
+         <!-- COLUMNA DERECHA: IMÁGENES -->
         <div class="col-lg-6 mb-4">
             <div class="contenedor-blanco h-100 p-4">
                 <img src="{{ asset('images/fotoSubir.jpg') }}" 
@@ -77,14 +46,14 @@
 
 <!-- PRODUCTOS DESTACADOS -->
 <div class="container my-5">
-
+    <!-- Título sección -->
     <div class="text-center mb-5">
         <h2 class="fw-bold" style="color:#1e3d2f;">🌿 Productos destacados</h2>
         <p class="text-muted">Elegí tu próxima planta favorita</p>
     </div>
 
     <div class="row">
-
+          <!-- PRODUCTO 1 -->
         <div class="col-md-4 mb-4">
             <a href="/catalogo" class="text-decoration-none text-dark">
                 <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
@@ -93,6 +62,7 @@
                              class="img-fluid rounded producto-img" 
                              style="max-height: 100%; object-fit: contain;">
                     </div>
+                    <!-- Info -->
                     <div class="mt-3">
                         <h5 class="fw-bold">Limonero</h5>
                         <p class="text-success fw-bold">$5000</p>
@@ -100,7 +70,7 @@
                 </div>
             </a>
         </div>
-
+            <!-- PRODUCTO 2 -->
         <div class="col-md-4 mb-4">
             <a href="/catalogo" class="text-decoration-none text-dark">
                 <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
@@ -116,7 +86,7 @@
                 </div>
             </a>
         </div>
-
+          <!-- PRODUCTO 3 -->
         <div class="col-md-4 mb-4">
             <a href="/catalogo" class="text-decoration-none text-dark">
                 <div class="card producto-card h-100 text-center p-3 border-0 shadow-sm">
@@ -134,7 +104,7 @@
         </div>
 
     </div>
-
+     <!-- Botón catálogo -->
     <div class="text-center mt-4">
         <a href="/catalogo" class="btn btn-success rounded-pill px-5 py-2">
             Ver todo el catálogo →

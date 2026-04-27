@@ -7,6 +7,7 @@ class PruebaController extends Controller
 {
     public function ver_catalogo($categoria = null) 
     {
+        // Array con todos los productos del catálogo
         $todosLosProductos = [
             [
                 'nombre'      => 'Limonero',
@@ -101,16 +102,19 @@ class PruebaController extends Controller
                 'categoria'   => 'aromaticas'
             ],
         ];
-
+       // Si se recibe una categoría por parámetro
         if ($categoria) {
-            // El array_values es clave para que el @foreach de Blade no falle
+             // Filtra los productos que coincidan con esa categoría
+            // strtolower se usa para evitar problemas con mayúsculas/minúsculas
+            // array_values reordena el array para que Blade lo recorra bien
             $productos = array_values(array_filter($todosLosProductos, function($producto) use ($categoria) {
                 return strtolower($producto['categoria']) === strtolower($categoria);
             }));
         } else {
+             // Si no hay categoría, muestra todos los productos
             $productos = $todosLosProductos;
         }
-
+        // Retorna la vista con los productos y la categoría seleccionada
         return view('frontend.productos', compact('productos', 'categoria'));
     }
 }

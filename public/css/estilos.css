@@ -6,34 +6,28 @@ body {
     font-family: Arial, sans-serif;
     padding-top: 100px; 
 }
-
-/* Colores personalizados */
-p.custom-color {
-    color: #444444;
-    font-size: 18px;
-}
-
+/* Color verde oscuro para textos específicos */
 .color-navbar {
     color: #1B4D3E !important; 
 }
 
-/* Ajustes especiales */
+/* Espaciado extra para secciones */
 .div-especial {
     margin-top: 50px;
     padding: 20px;
 }
 
-/* Botones */
+/* Sombra en botones */
 .btn-custom {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Hover links */
+/* Subrayado al pasar el mouse en links */
 a.custom-hover:hover {
     text-decoration: underline;
 }
 
-/* NAVBAR SUP(FIJO) */
+/* Navbar superior fijo */
 .barraS {
     position: fixed !important;
     top: 0;
@@ -41,7 +35,7 @@ a.custom-hover:hover {
     width: 100%;
     z-index: 1050;
 }
-
+/* Navbar sup fijo */
 .barraS .custom-navbar {
     background-color: #f1ebd8;
     padding-top: 0px;
@@ -73,6 +67,7 @@ a.custom-hover:hover {
     position: relative; /* IMPORTANTE */
      z-index: 1;
 }
+/* Imagen de fondo con transparencia */
 body::before {
     content: "";
     position: fixed;
@@ -153,7 +148,34 @@ body {
     padding-top: 120px !important;
 }
 
+.contenedor-blanco {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+}
 
+.img-efecto {
+    transition: all 0.4s ease;
+}
+.img-efecto:hover {
+    transform: scale(1.04);
+}
+
+.badge-beneficio {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.badge-beneficio:hover {
+    background-color: #c8e6c9;
+    transform: translateY(-3px);
+}
 
 
 /* Tarjeta de contacto */
@@ -211,21 +233,6 @@ body {
 
 .img-efecto:hover {
     transform: scale(1.03);
-}
-
-.badge-beneficio {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    padding: 10px 18px;
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-}
-
-.badge-beneficio:hover {
-    background-color: #c8e6c9;
-    transform: translateY(-3px);
 }
 /*  SOBRE NOSOTROS  */
 .sobre-nosotros {
