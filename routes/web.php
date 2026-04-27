@@ -42,3 +42,7 @@ Route::post('/registrarse', [RegistroController::class, 'guardar'])->name('regis
 // Ruta dinámica para ver productos por categoría (opcional)
 // Ej: /productos o /productos/plantas de interior
 Route::get('/productos/{categoria?}', [PruebaController::class, 'ver_catalogo'])->name('ver.catalogo');
+
+Route::get('/carrito', function () {
+    return view('frontend.carrito');
+})->name('carrito');

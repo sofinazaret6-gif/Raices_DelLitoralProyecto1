@@ -25,7 +25,7 @@
                             <div class="mt-auto">
                                 <p class="text-success fw-bold fs-5">${{ number_format($producto['precio'], 0, ',', '.') }}</p>
                                  <!-- Botón (no funcional ahora) -->
-                                <a href="#" class="btn btn-success w-100 rounded-pill">Agregar al carrito</a>
+                                <a href="/carrito" class="btn btn-success w-100 rounded-pill">Agregar al carrito</a>
                             </div>
                         </div>
                     </div>

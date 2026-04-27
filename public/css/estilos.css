@@ -346,3 +346,46 @@ body {
     font-weight: 700;
     color: #000000; 
 }
+
+
+/* Estilos para la página de Carrito/Construcción */
+.section-construccion {
+    min-height: 70vh;
+    background-color: #f9fcf9;
+}
+
+.card-custom-carrito {
+    border-radius: 25px;
+    background: #ffffff;
+}
+
+.badge-proximamente {
+    background-color: rgba(75, 107, 64, 0.1);
+    color: #4b6b40;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+}
+
+.titulo-verde {
+    color: #1B4D3E;
+}
+
+.texto-rama {
+    color: #4b6b40;
+}
+
+.btn-verde-vivero {
+    background-color: #4b6b40 !important;
+    border: none !important;
+}
+
+.icono-carrito-espera {
+    font-size: 10rem;
+    color: #1B4D3E; 
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+}
+
+.z-index-top {
+    z-index: 2;
+    position: relative;
+}
