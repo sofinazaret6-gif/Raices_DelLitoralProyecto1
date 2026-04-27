@@ -24,10 +24,10 @@ class PruebaController extends Controller
                 'categoria'   => 'frutales'
             ],
             [
-                'nombre'      => 'Naranjo ',
+                'nombre'      => 'tomatera ',
                 'precio'      => 5000,
                 'imagen'      => 'images/imagesProduct/tomate2.png',
-                'descripcion' => 'Ideal para macetas o jardín, frutos todo el año.',
+                'descripcion' => 'Ideal para huerta, frutos de un color rojo intenso que dan vida y sabor a tus dias.',
                 'categoria'   => 'frutales'
             ],
             [

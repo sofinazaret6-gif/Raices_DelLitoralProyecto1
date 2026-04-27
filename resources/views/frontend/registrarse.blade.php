@@ -13,20 +13,20 @@
                     
                     <div class="card shadow-lg" style="border-radius: 15px; background-color: rgba(255, 255, 255, 0.95); border: none;">
                         <div class="card-body p-5">
-                             <!-- @if: verifica si hay mensaje de éxito en sesión -->
+                            <!-- if: verifica si hay mensaje de éxito en sesión -->
                             @if(session('success'))
-                             <!-- Se muestra si el registro fue exitoso -->
+                               <!-- Se muestra si el registro fue exitoso -->
                                 <div class="text-center py-5">
                                     <h2 class="text-uppercase mb-3" style="color: #4b6b40;">¡Registro Exitoso!</h2>
                                     <!-- Muestra el mensaje guardado en sesión -->
                                     <p class="lead mb-4">{{ session('success') }}</p>
                                     <!-- Botón para recargar -->
                                     <a href="{{ route('registrarse') }}" class="btn btn-success btn-lg">Aceptar</a>
+                                    
                                 </div>
                             @else
-                             <!-- Si NO hay éxito, muestra el formulario -->
                                 <h2 class="text-uppercase text-center mb-5">CREAR CUENTA</h2>
-                                <!-- @if: verifica si hay errores -->
+                                   <!-- if: verifica si hay errores -->
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul class="mb-0">
@@ -36,7 +36,7 @@
                                         </ul>
                                     </div>
                                 @endif
-                                 <!-- Formulario -->
+
                                 <form method="POST" action="{{ route('registrarse.guardar') }}">
                                     @csrf
 
@@ -59,7 +59,7 @@
                                         <label class="form-label fw-bold">Repetir Contraseña</label>
                                         <input type="password" name="password_confirmation" class="form-control form-control-lg border-success-subtle" />
                                     </div>
-                                     <!-- Botón -->
+
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-success btn-block btn-lg text-white px-5" style="background-color: #4b6b40; border: none;">
                                             Registrarse
