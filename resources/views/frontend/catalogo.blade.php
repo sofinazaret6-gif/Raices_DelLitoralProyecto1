@@ -6,13 +6,14 @@
         <h4>EXPLORAR CATEGORÍAS</h4>
     </x-slot:barraP>
    <!-- Carrusel de imágenes (Bootstrap) -->
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel"  data-bs-interval="2500">
+        
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('images/nuestro-catalogo.jpeg') }}" class="d-block w-100" alt="Foto catalogos" style="height: 350px; object-fit: cover;">
+                <img src="{{ asset('images/nuestro-catalogo.jpeg') }}" class="d-block w-100" alt="Foto catalogos" style="height: 450px; object-fit: cover;">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/areas-vivero.png') }}" class="d-block w-100" alt="Foto vivero" style="height: 350px; object-fit: cover;">
+                <img src="{{ asset('images/areas-vivero.png') }}" class="d-block w-100" alt="Foto vivero" style="height: 450px; object-fit: cover;">
             </div>
         </div>
     </div>

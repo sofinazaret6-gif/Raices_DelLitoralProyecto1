@@ -15,19 +15,13 @@ class RegistroController extends Controller
     public function guardar(Request $request)
     {
         // Validación de los datos ingresados por el usuario
-        // 'required' = obligatorio
-        // 'string' = debe ser texto
-        // 'max:255' = máximo 255 caracteres
-        // 'email' = formato válido
-        // 'min:6' = mínimo 6 caracteres
         // 'same:password_confirmation' = debe coincidir con el campo de confirmación
         $request->validate([
             'nombre' => 'required|string|max:255',
             'email' => 'required|email',
             'password' => 'required|min:6|same:password_confirmation'
         ]);
-
-        // Despues guardar en BDD
+          
 
         return redirect()->route('registrarse')->with('success', 'Usuario registrado correctamente');
     }
