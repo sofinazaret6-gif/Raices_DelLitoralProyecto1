@@ -12,10 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('consultas', function (Blueprint $table) {
-           $table->id(); 
-           $table->string('nombre', 150); 
-           $table->string('apellido', 150); 
-           $table->string('email', 150); 
+           $table->id();
+           $table->foreignId('persona_id')->constrained('personas'); 
            $table->string('motivo'); 
            $table->text('consulta');  
            $table->timestamps(); 
