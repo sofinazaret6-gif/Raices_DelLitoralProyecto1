@@ -12,9 +12,16 @@ class Persona extends Model
         'telefono',
         'email',
         'password',
+        'id_perfil',
+        'estado',
     ];
 
     protected $casts = [
         'password' => 'hashed',
     ];
+    public function perfil()
+{
+    return $this->belongsTo(Perfil::class, 'id_perfil');
+}
+
 }
