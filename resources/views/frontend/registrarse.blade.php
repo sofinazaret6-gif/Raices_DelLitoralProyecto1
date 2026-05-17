@@ -10,23 +10,20 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     
-                    
                     <div class="card shadow-lg" style="border-radius: 15px; background-color: rgba(255, 255, 255, 0.95); border: none;">
                         <div class="card-body p-5">
-                            <!-- if: verifica si hay mensaje de éxito en sesión -->
+                            
+                            <!-- Verifica si hay mensaje de éxito en sesión -->
                             @if(session('success'))
-                               <!-- Se muestra si el registro fue exitoso -->
                                 <div class="text-center py-5">
                                     <h2 class="text-uppercase mb-3" style="color: #4b6b40;">¡Registro Exitoso!</h2>
-                                    <!-- Muestra el mensaje guardado en sesión -->
                                     <p class="lead mb-4">{{ session('success') }}</p>
-                                    <!-- Botón para recargar -->
                                     <a href="{{ route('registrarse') }}" class="btn btn-success btn-lg">Aceptar</a>
-                                    
                                 </div>
                             @else
                                 <h2 class="text-uppercase text-center mb-5">CREAR CUENTA</h2>
-                                   <!-- if: verifica si hay errores -->
+                                
+                                <!-- Bloque de errores arriba del formulario -->
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul class="mb-0">

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-// Importa la clase Request para manejar los datos del formulario
+
+//  Importamos  Request personalizado
+use App\Http\Requests\RegistroRequest;
 use Illuminate\Http\Request;
-// Definición del controlador de registro
+
 class RegistroController extends Controller
 {
     // Muestra la vista del formulario de registro
@@ -11,18 +13,12 @@ class RegistroController extends Controller
     {
         return view('frontend.registrarse');
     }
-     // Procesa los datos enviados desde el formulario
-    public function guardar(Request $request)
-    {
-        // Validación de los datos ingresados por el usuario
-        // 'same:password_confirmation' = debe coincidir con el campo de confirmación
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'email' => 'required|email',
-            'password' => 'required|min:6|same:password_confirmation'
-        ]);
-          
 
+    // Procesa los datos enviados desde el request
+    public function guardar(RegistroRequest $request)
+    {
+        dd(get_class($request));
+        // Aca la lógica para guardar el usuario en la base de datos.
         return redirect()->route('registrarse')->with('success', 'Usuario registrado correctamente');
     }
 }
