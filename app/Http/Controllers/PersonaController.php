@@ -1,30 +1,31 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Http\Requests\PersonaRequest;
+use App\Models\Persona;
 
-class Persona extends Authenticatable
+class PersonaController extends Controller
 {
-    protected $fillable = [
-        'nombre',
-        'apellido',
-        'telefono',
-        'email',
-        'password',
-        'id_perfil',
-        'estado',
-    ];
-    protected $hidden = [
-        'password',
-    ];
-    protected $casts = [
-        'password' => 'hashed',
-    ];
-
-    // Relación con la tabla de perfiles
-    public function perfil()
+    public function guardar(PersonaRequest $request)
     {
-        return $this->belongsTo(Perfil::class, 'id_perfil');
+        $datos = $request->validated();
+
+        Persona::create([
+            'nombre' => $datos['nombre'],
+            'apellido' => $datos['apellido'],
+            'telefono' => $datos['telefono'],
+            'email' => $datos['email'],
+            'password' => $datos['password'],
+            'id_perfil' => 2, // cliente
+            'estado' => 1
+        ]);
+
+        return redirect()
+            ->route('login.form')
+            ->with(
+                'success',
+                'Registro exitoso. Ya puedes iniciar sesión.'
+            );
     }
 }

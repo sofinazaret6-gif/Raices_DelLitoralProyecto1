@@ -3,22 +3,33 @@
 namespace App\Http\Controllers;
 
 //  Importamos  Request personalizado
+use App\Models\Persona;
 use App\Http\Requests\RegistroRequest;
 use Illuminate\Http\Request;
 
 class RegistroController extends Controller
 {
-    // Muestra la vista del formulario de registro
+    // Mostrar formulario
     public function registrarse()
     {
         return view('frontend.registrarse');
     }
 
-    // Procesa los datos enviados desde el request
+    // Guardar usuario
     public function guardar(RegistroRequest $request)
     {
-        dd(get_class($request));
-        // Aca la lógica para guardar el usuario en la base de datos.
-        return redirect()->route('registrarse')->with('success', 'Usuario registrado correctamente');
+        $datos = $request->validated();
+
+        $datos['id_perfil'] = 2; // Cliente
+        $datos['estado'] = 1; // Activo
+
+        Persona::create($datos);
+
+        return redirect()
+            ->route('login.form')
+            ->with(
+                'success',
+                'Usuario registrado correctamente'
+            );
     }
 }
