@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Persona extends Model
+class Persona extends Authenticatable
 {
-   protected $fillable = [
+    protected $fillable = [
         'nombre',
         'apellido',
         'telefono',
@@ -16,12 +16,17 @@ class Persona extends Model
         'estado',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+    
     protected $casts = [
         'password' => 'hashed',
     ];
-    public function perfil()
-{
-    return $this->belongsTo(Perfil::class, 'id_perfil');
-}
 
+    // Relación con la tabla de perfiles
+    public function perfil()
+    {
+        return $this->belongsTo(Perfil::class, 'id_perfil');
+    }
 }
