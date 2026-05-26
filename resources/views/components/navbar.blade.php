@@ -8,19 +8,19 @@
 
             <ul class="navbar-nav mx-auto align-items-center flex-row gap-2"> 
                 
-                @guest
+                @if(!session()->has('id_usuario'))
                     <li class="nav-item">
                        <a href="{{ route('login.form') }}" class="nav-link px-2 color-navbar" title="Iniciar Sesión">
                             <i class="bi bi-person-fill" style="font-size: 24px"></i>
                         </a>
                     </li>
-                @endguest
+                @endif
 
-                @auth
+                @if(session()->has('id_usuario'))
                     <li class="nav-item">
                        <a href="/perfil" class="nav-link px-2 color-navbar d-flex align-items-center gap-1" title="Mi Perfil">
                             <i class="bi bi-person-check-fill" style="font-size: 24px"></i>
-                            <span class="small fw-semibold d-none d-md-inline">{{ Auth::user()->name }}</span>
+                            <span class="small fw-semibold d-none d-md-inline">{{ session('nombre_usuario') }}</span>
                         </a>
                     </li>
                     <li class="nav-item">    
@@ -28,7 +28,7 @@
                             <i class="bi bi-cart3" style="font-size: 24px"></i>
                         </a>
                     </li>
-                @endauth
+                @endif
                 
             </ul>
 
@@ -47,7 +47,8 @@
 
 <div class="barraI">
     <nav class="navbar navbar-expand-lg custom-navbar py-0" style="border-top: 1px solid rgba(255,255,255,0.1);">
-        <div class="container">
+        <div class="container d-flex justify-content-between align-items-center position-relative">
+            
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -60,24 +61,24 @@
                     <li class="nav-item"><a class="nav-link" href="/quienes-somos">Quiénes Somos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/consultas">Contacto</a></li>
 
-                    @guest
+                    @if(!session()->has('id_usuario'))
                         <li class="nav-item"><a class="nav-link" href="{{ route('login.form') }}">Iniciar Sesión</a></li>
-                    @endguest
-
-                    @auth
-                        <li class="nav-item">
-                            <form method="POST" action="{{ route('logout') }}" class="d-inline m-0 ms-lg-3">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-success px-3">
-                                    <i class="bi bi-box-arrow-right me-1"></i> Cerrar sesión
-                                </button>
-                            </form>
-                        </li>
-                    @endauth
+                    @endif
 
                 </ul>
             </div>
+
+            @if(session()->has('id_usuario'))
+                <div class="d-flex align-items-center ps-lg-4 py-2 py-lg-0" style="position: absolute; right: 0;">
+                    <form method="POST" action="{{ route('logout') }}" class="m-0">
+                        @csrf
+                        <button type="submit" class="nav-link" title="Cerrar Sesión" style="background: none; border: none; padding: 0 1.5rem 0 0; cursor: pointer; color: white !important;">
+                            <i class="fas fa-door-open" style="font-size: 22px;"></i>
+                        </button>
+                    </form>
+                </div>
+            @endif
+
         </div>
     </nav>
 </div>
-
