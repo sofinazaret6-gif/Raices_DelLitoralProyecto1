@@ -58,14 +58,10 @@
                                     </div>
                                 @endif
 
-<<<<<<< HEAD
-                                <form method="POST" action="{{ route('registrarse.guardar') }}"novalidate>
-=======
 
                                 <form method="POST"
-                                      action="{{ route('registrarse.guardar') }}">
+                                      action="{{ route('registrarse.guardar') }}"novalidate>
 
->>>>>>> 0d211c306269d9c7a391ce5d31bc3ad3d297d6e1
                                     @csrf
 
                                     <div class="row">

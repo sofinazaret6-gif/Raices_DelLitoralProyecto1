@@ -15,17 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-<<<<<<< HEAD
-        User::firstOrCreate([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            PerfilSeeder::class,
+            AdminUserSeeder::class,
         ]);
-=======
-       $this->call([
-        PerfilSeeder::class,
-        AdminUserSeeder::class,
-    ]);
->>>>>>> 0d211c306269d9c7a391ce5d31bc3ad3d297d6e1
+
+         
+        User::firstOrCreate(
+            ['email' => 'test@example.com'], 
+            [             
+                'name' => 'Test User',
+                'password' => bcrypt('12345678')
+            ]
+        );
     }
 }
-
