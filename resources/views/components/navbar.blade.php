@@ -61,7 +61,6 @@
                     <li class="nav-item"><a class="nav-link" href="/consultas">Contacto</a></li>
 
                     @guest
-                        <li class="nav-item"><a class="nav-link fw-bold" href="{{ route('registrarse') }}">Registrarse</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('login.form') }}">Iniciar Sesión</a></li>
                     @endguest
 
