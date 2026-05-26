@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email', 150);
             $table->string('password');
             $table->foreignId('id_perfil')->constrained('perfils'); 
-            $table->boolean('estado');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

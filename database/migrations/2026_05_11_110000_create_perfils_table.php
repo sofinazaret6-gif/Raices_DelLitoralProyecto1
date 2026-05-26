@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('perfils', function (Blueprint $table) {
             $table->id();
-            $table->text('perfil_descripcion', 50);
+            $table->string('perfil_descripcion', 50);
             $table->timestamps();
         });
     }

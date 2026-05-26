@@ -22,6 +22,7 @@ class RegistroRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:100',
+            'apellido' => 'required|string|max:100',
             'email' => 'required|email|unique:users,email',
             // CAMBIO: Cambiamos 'same:password_confirmation' por 'confirmed'
             'password' => 'required|string|min:8|max:500|confirmed' 

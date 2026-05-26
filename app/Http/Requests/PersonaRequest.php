@@ -25,7 +25,7 @@ class PersonaRequest extends FormRequest
             'telefono'  => 'nullable|string|max:20', // nullable por que es opcional
             'email'     => 'required|email|unique:personas,email',
             'password'  => 'required|string|min:6',
-            'id_perfil' => 'required|exists:perfiles,id', // valida que el perfil exista en la tabla perfiles
+            'id_perfil' => 'required|exists:perfils,id', // valida que el perfil exista en la tabla perfiles
             'estado'    => 'nullable|integer' 
         ];
     }

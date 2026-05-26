@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\PruebaController; // Controlador para manejar el catálogo y filtros
+use App\Http\Controllers\LoginController;
+
 // Ruta principal (home)
 Route::get('/', function () {
     return view('frontend.principal');
@@ -46,3 +48,12 @@ Route::get('/productos/{categoria?}', [PruebaController::class, 'ver_catalogo'])
 Route::get('/carrito', function () {
     return view('frontend.carrito');
 })->name('carrito');
+
+// Mostrar formulario
+Route::get('/login', function () {
+    return view('frontend.login');
+})->name('login.form');
+
+// Procesar login
+Route::post('/login', [LoginController::class, 'login'])
+      ->name('login');
