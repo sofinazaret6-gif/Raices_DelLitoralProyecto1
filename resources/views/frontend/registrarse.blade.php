@@ -34,7 +34,7 @@
                                     </div>
                                 @endif
 
-                                <form method="POST" action="{{ route('registrarse.guardar') }}">
+                                <form method="POST" action="{{ route('registrarse.guardar') }}"novalidate>
                                     @csrf
 
                                     <div class="form-outline mb-4">
