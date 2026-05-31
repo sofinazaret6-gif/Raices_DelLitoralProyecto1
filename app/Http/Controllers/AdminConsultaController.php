@@ -5,22 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consulta;
 
-class AdminController extends Controller
+class AdminConsultaController extends Controller
 {
-     public function index()
+    public function index()
     {
-        return view('dashboard.principalAdmin');
-    }
-    public function consultas()
-   {
-    $consultas = Consulta::all();
+        $consultas = Consulta::all();
 
-    return view(
-        'dashboard.listar_consultas',
-        compact('consultas')
-    );
-   }
-   public function responder($id)
+        return view(
+            'dashboard.listar_consultas',
+            compact('consultas')
+        );
+    }
+    public function responder($id)
 {
     $consulta = Consulta::findOrFail($id);
 
@@ -28,11 +24,10 @@ class AdminController extends Controller
     $consulta->estado_consulta = 'respondida';
     $consulta->save();
 
-    // abrir mail
+    // abrir gmail/mail
     return redirect()->away(
         'mailto:' . $consulta->email .
         '?subject=Respuesta a su consulta'
     );
 }
-    
 }

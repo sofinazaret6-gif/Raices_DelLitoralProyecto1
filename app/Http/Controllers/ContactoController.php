@@ -1,26 +1,48 @@
 <?php
 
 namespace App\Http\Controllers;
-//importamos el request con sus mensajes y validaciones
-use App\Http\Requests\ContactoRequest; 
-use Illuminate\Http\Request;
 
+use App\Http\Requests\ContactoRequest;
+use App\Models\Consulta;
+use Illuminate\Support\Facades\Auth;
 
 class ContactoController extends Controller
 {
-    /**
-     * Método que procesa los datos enviados desde el formulario.
-     * " por tu clase "ContactoRequest".
-     */
     public function procesar(ContactoRequest $request)
     {
-        // ¡Ya no hace falta la validación manual  pq lo hace el request
-        // Retorna una vista  'frontend.exito'
-        // y le pasa los datos ingresados por el usuario
+        // Variables para guardar datos
+        $nombre = '';
+        $apellido = '';
+        $email = '';
+
+        // Si el usuario inició sesión
+       if (session()->has('id_usuario')) {
+
+            $nombre = session('nombre_usuario');
+            $apellido = session('apellido_usuario');
+            $email = session('email_usuario');
+        } else {
+
+            // Usuario sin login
+            $nombre = $request->nombre;
+            $apellido = $request->apellido;
+            $email = $request->email;
+        }
+
+        // Guardar consulta
+        Consulta::create([
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+            'email' => $email,
+            'motivo' => $request->motivo,
+            'consulta' => $request->consulta,
+        ]);
+
+        // Página éxito
         return view('frontend.exito', [
-            'nombre' => $request->nombre,
-            'apellido' => $request->apellido,
-            'email' => $request->email,
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+            'email' => $email,
             'mensaje' => $request->consulta
         ]);
     }

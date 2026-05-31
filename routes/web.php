@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\PruebaController; 
 use App\Http\Controllers\AuthController; // <-- 1. Único controlador importado para Auth
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminConsultaController;
 
 // Ruta principal (home)
 Route::get('/', function () {
@@ -64,3 +66,16 @@ Route::get('/productos/{categoria?}', [PruebaController::class, 'ver_catalogo'])
 Route::get('/carrito', function () {
     return view('frontend.carrito');
 })->name('carrito');
+
+Route::middleware(['role:1'])->group(function () {
+
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get(
+        '/admin/consultas',
+        [AdminController::class, 'consultas']
+    );
+    Route::post(
+    '/admin/consultas/{id}/responder',
+    [AdminConsultaController::class, 'responder']
+    )->name('consultas.responder');
+});

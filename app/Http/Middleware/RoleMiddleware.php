@@ -8,16 +8,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
-    public function handle($request, Closure $next, $role)
-{
-    if (!auth()->check()) {
-        return redirect('/'); // visitante
-    }
+   public function handle($request, Closure $next, $role)
+    {
+        if (!session()->has('id_usuario')) {
+            return redirect('/');
+        }
 
-    if (auth()->user()->role !== $role) {
-        return redirect('/'); // o vista de error
-    }
+        if (session('perfil_usuario') != $role) {
+            return redirect('/');
+        }
 
-    return $next($request);
-}
+        return $next($request);
+    }
 }

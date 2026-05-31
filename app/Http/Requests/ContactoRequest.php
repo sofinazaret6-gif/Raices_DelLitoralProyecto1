@@ -26,6 +26,7 @@ class ContactoRequest extends FormRequest
             'nombre' => 'required|string|max:100',
             'apellido' => 'required|string|max:100',
             'email' => 'required|email',
+            'motivo' => 'required',
             'consulta' => 'required|string|min:10|max:500'
         ];
     }
@@ -52,6 +53,7 @@ class ContactoRequest extends FormRequest
             'consulta.required' => 'La consulta no puede estar vacía.',
             'consulta.min' => 'La consulta debe tener al menos 10 caracteres.',
             'consulta.max' => 'La consulta no puede superar los 500 caracteres.',
+            'motivo.required' => 'Debe seleccionar un motivo para la consulta.',
         ];
     }
 }

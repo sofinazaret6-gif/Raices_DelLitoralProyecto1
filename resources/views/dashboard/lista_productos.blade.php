@@ -1,4 +1,4 @@
-<x_layout_Admin>
+<x_layout-admin>
 <x-slot:title>Lista de Productos</x-slot:title>
 
     <x-slot:barraP>
@@ -9,26 +9,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<x_layout_Admin>
+</x_layout-admin>

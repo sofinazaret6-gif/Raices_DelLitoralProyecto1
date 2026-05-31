@@ -40,32 +40,41 @@ class AuthController extends Controller
             ->with('success', 'Usuario registrado correctamente');
     }
 
-    // 4. Procesa el formulario de login (De tu LoginController)
-    public function login(LoginRequest $request)
-    {
-        $persona = Persona::where(
-            'email',
-            $request->email
-        )->first();
+    // 4. Procesa el formulario de login
+public function login(LoginRequest $request)
+{
+    $persona = Persona::where(
+        'email',
+        $request->email
+    )->first();
 
-        if(!$persona || !Hash::check(
+    if (
+        !$persona ||
+        !Hash::check(
             $request->password,
             $persona->password
-        )) {
-            return back()->withErrors([
-                'email' => 'Correo o contraseña incorrectos'
-            ]);
-        }
-
-        session([
-            'id_usuario' => $persona->id,
-            'nombre_usuario' => $persona->nombre,
-            'perfil_usuario' => $persona->id_perfil
+        )
+    ) {
+        return back()->withErrors([
+            'email' => 'Correo o contraseña incorrectos'
         ]);
-
-        return redirect()->route('catalogo');
     }
 
+    session([
+        'id_usuario'     => $persona->id,
+        'nombre_usuario' => $persona->nombre,
+         'apellido_usuario'=> $persona->apellido,
+         'email_usuario'   => $persona->email,
+        'perfil_usuario' => $persona->id_perfil
+    ]);
+
+    // Redirección según perfil
+    if ($persona->id_perfil == 1) {
+        return redirect('/admin');
+    }
+
+    return redirect()->route('catalogo');
+}
     // 5. Procesa el logout (El código que dio el profe)
     public function logout(Request $request)
     {

@@ -19,7 +19,8 @@
                 <!-- Nombre del Admin e Ícono -->
                 <div class="d-flex align-items-center text-decoration-none" style="color: #1B4D3E;">
                     <i class="bi bi-person-badge-fill me-2" style="font-size: 20px;"></i>
-                    <span class="fw-semibold">Nombre Admin</span> <!-- Aquí irá el {{ Auth::user()->name }} de Laravel -->
+                    <span class="fw-semibold">
+                          {{ session('nombre_usuario', 'Admin') }}</span>
                 </div>
 
                 <!-- Botón Cerrar Sesión -->
