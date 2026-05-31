@@ -1,6 +1,6 @@
 <x-layout>
     
-    <x-slot:title>Consultas</x-slot:title>
+    <x-slot:title>Consultas</x-slot:title
 
     <x-slot:barraP>
         <h4>Realizá tu consulta</h4>

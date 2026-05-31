@@ -1,4 +1,4 @@
-<x-layout-admin>
+<x-layout-admin
 
 <x-slot:title>
     Panel de Consultas

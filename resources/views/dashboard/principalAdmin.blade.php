@@ -1,4 +1,4 @@
-<x-layout-admin>
+<x-layout-admin
 <x-slot:title>Menu administrador</x-slot:title>
 
     <x-slot:barraP>

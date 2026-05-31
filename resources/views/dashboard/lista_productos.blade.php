@@ -1,4 +1,4 @@
-<x_layout-admin>
+<x_layout-admin
 <x-slot:title>Lista de Productos</x-slot:title>
 
     <x-slot:barraP>
