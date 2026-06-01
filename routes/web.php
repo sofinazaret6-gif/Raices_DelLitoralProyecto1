@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactoController;
-use App\Http\Controllers\ProductoController; // <-- Reemplazamos PruebaController por este
+use App\Http\Controllers\ProductoController; 
 use App\Http\Controllers\AuthController; 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminConsultaController;
@@ -78,49 +78,24 @@ Route::get('/carrito', function () {
 Route::middleware(['role:1'])->group(function () {
 
     Route::get('/admin', [AdminController::class, 'index']);
-<<<<<<< HEAD
     
     Route::get('/admin/consultas', [AdminController::class, 'consultas']);
     
     Route::post('/admin/consultas/{id}/responder', [AdminConsultaController::class, 'responder'])->name('consultas.responder');
 
-    // Novedad: Rutas para que el Admin maneje los Productos (Listar, Agregar, Eliminar)
+    // Rutas para que el Admin maneje los Productos (Listar, Agregar, Eliminar)
     Route::resource('admin/productos', ProductoController::class)->names('productos');
 });
-=======
-    Route::get(
-        '/admin/consultas',
-        [AdminController::class, 'consultas']
-    );
-    Route::post(
-    '/admin/consultas/{id}/responder',
-    [AdminConsultaController::class, 'responder']
-    )->name('consultas.responder');
-});
+
+// ----------------------------------------------------
+// RUTAS DE PERFIL Y CONFIGURACIÓN (Cambios de Sofi)
+// ----------------------------------------------------
+
 // PERFIL
-Route::get(
-    '/perfil',
-    [PerfilController::class, 'edit']
-)->name('perfil');
-
-Route::put(
-    '/perfil',
-    [PerfilController::class, 'update']
-)->name('perfil.update');
-
-Route::delete(
-    '/perfil',
-    [PerfilController::class, 'destroy']
-)->name('perfil.destroy');
+Route::get('/perfil', [PerfilController::class, 'edit'])->name('perfil');
+Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
+Route::delete('/perfil', [PerfilController::class, 'destroy'])->name('perfil.destroy');
 
 // CONTRASEÑA
-Route::get(
-    '/perfil/password',
-    [PerfilController::class, 'editPassword']
-)->name('perfil.password');
-
-Route::put(
-    '/perfil/password',
-    [PerfilController::class, 'updatePassword']
-)->name('perfil.password.update');
->>>>>>> 8c07e271e246afa4a2071d7f58b26ca5104536bd
+Route::get('/perfil/password', [PerfilController::class, 'editPassword'])->name('perfil.password');
+Route::put('/perfil/password', [PerfilController::class, 'updatePassword'])->name('perfil.password.update');
