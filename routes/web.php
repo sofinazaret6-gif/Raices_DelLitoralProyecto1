@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactoController;
-use App\Http\Controllers\PruebaController; 
-use App\Http\Controllers\AuthController; // <-- 1. Único controlador importado para Auth
+use App\Http\Controllers\ProductoController; // <-- Reemplazamos PruebaController por este
+use App\Http\Controllers\AuthController; 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminConsultaController;
 
@@ -33,12 +33,19 @@ Route::get('/terminos', function () {
     return view('frontend.terminos');
 });
 
-// Vista del catálogo general
-Route::get('/catalogo', function () {
-    return view('frontend.catalogo');
-})->name('catalogo');
+// ----------------------------------------------------
+// RUTAS DE CATÁLOGO (Conectadas a la Base de Datos)
+// ----------------------------------------------------
 
-// Vista de consultas
+// Redirecciona el catálogo general al método dinámico sin categoría
+Route::get('/catalogo', [ProductoController::class, 'ver_catalogo'])->name('catalogo');
+
+// Mantiene tu ruta original /productos/{categoria?} pero apuntando al nuevo controlador
+Route::get('/productos/{categoria?}', [ProductoController::class, 'ver_catalogo'])->name('ver.catalogo');
+
+// ----------------------------------------------------
+
+// Vista de consultas (pública)
 Route::get('/consultas', function () {
     return view('frontend.consultas');
 });
@@ -47,35 +54,34 @@ Route::get('/consultas', function () {
 // RUTAS DE AUTENTICACIÓN (Unificadas en AuthController)
 // ----------------------------------------------------
 
-// Registro (Mantiene tus mismos nombres de ruta)
+// Registro 
 Route::get('/registrarse', [AuthController::class, 'formularioRegistro'])->name('registrarse');
 Route::post('/registrarse', [AuthController::class, 'registrar'])->name('registrarse.guardar');
 
-// Login (Mantiene tus mismos nombres de ruta)
+// Login 
 Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-// Logout (La nueva ruta que pidió el profe usando POST)
+// Logout 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // ----------------------------------------------------
-
-// Ruta dinámica para ver productos por categoría
-Route::get('/productos/{categoria?}', [PruebaController::class, 'ver_catalogo'])->name('ver.catalogo');
 
 Route::get('/carrito', function () {
     return view('frontend.carrito');
 })->name('carrito');
 
+// ----------------------------------------------------
+// PANEL DE ADMINISTRACIÓN (Protegido por tu Middleware de Rol 1)
+// ----------------------------------------------------
 Route::middleware(['role:1'])->group(function () {
 
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get(
-        '/admin/consultas',
-        [AdminController::class, 'consultas']
-    );
-    Route::post(
-    '/admin/consultas/{id}/responder',
-    [AdminConsultaController::class, 'responder']
-    )->name('consultas.responder');
+    
+    Route::get('/admin/consultas', [AdminController::class, 'consultas']);
+    
+    Route::post('/admin/consultas/{id}/responder', [AdminConsultaController::class, 'responder'])->name('consultas.responder');
+
+    // Novedad: Rutas para que el Admin maneje los Productos (Listar, Agregar, Eliminar)
+    Route::resource('admin/productos', ProductoController::class)->names('productos');
 });
