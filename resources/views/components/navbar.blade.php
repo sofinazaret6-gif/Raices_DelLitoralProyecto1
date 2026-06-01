@@ -18,7 +18,7 @@
 
                 @if(session()->has('id_usuario'))
                     <li class="nav-item">
-                       <a href="/perfil" class="nav-link px-2 color-navbar d-flex align-items-center gap-1" title="Mi Perfil">
+                       <a href="{{ route('perfil') }}" class="nav-link px-2 color-navbar d-flex align-items-center gap-1" title="Mi Perfil">
                             <i class="bi bi-person-check-fill" style="font-size: 24px"></i>
                             <span class="small fw-semibold d-none d-md-inline">{{ session('nombre_usuario') }}</span>
                         </a>

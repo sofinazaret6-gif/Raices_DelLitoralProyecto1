@@ -6,6 +6,7 @@ use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\AuthController; // <-- 1. Único controlador importado para Auth
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminConsultaController;
+use App\Http\Controllers\PerfilController;
 
 // Ruta principal (home)
 Route::get('/', function () {
@@ -79,3 +80,29 @@ Route::middleware(['role:1'])->group(function () {
     [AdminConsultaController::class, 'responder']
     )->name('consultas.responder');
 });
+// PERFIL
+Route::get(
+    '/perfil',
+    [PerfilController::class, 'edit']
+)->name('perfil');
+
+Route::put(
+    '/perfil',
+    [PerfilController::class, 'update']
+)->name('perfil.update');
+
+Route::delete(
+    '/perfil',
+    [PerfilController::class, 'destroy']
+)->name('perfil.destroy');
+
+// CONTRASEÑA
+Route::get(
+    '/perfil/password',
+    [PerfilController::class, 'editPassword']
+)->name('perfil.password');
+
+Route::put(
+    '/perfil/password',
+    [PerfilController::class, 'updatePassword']
+)->name('perfil.password.update');

@@ -14,14 +14,20 @@
                 Panel de Administración
             </span>
 
-            <!-- Información del Perfil y Cerrar Sesión -->
-            <div class="d-flex align-items-center gap-3">
-                <!-- Nombre del Admin e Ícono -->
-                <div class="d-flex align-items-center text-decoration-none" style="color: #1B4D3E;">
-                    <i class="bi bi-person-badge-fill me-2" style="font-size: 20px;"></i>
-                    <span class="fw-semibold">
-                          {{ session('nombre_usuario', 'Admin') }}</span>
-                </div>
+           <!-- Información del Perfil -->
+                  <a href="{{ route('perfil') }}"
+                         class="d-flex align-items-center text-decoration-none"
+                          style="color: #1B4D3E;">
+
+                        <i class="bi bi-person-badge-fill me-2"
+                        style="font-size:20px;">
+                           </i>
+
+                <span class="fw-semibold">
+                           {{ session('nombre_usuario', 'Admin') }}
+               </span>
+
+                 </a>
 
                 <!-- Botón Cerrar Sesión -->
                 <a href="{{ route('logout') }}" class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1"
