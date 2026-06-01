@@ -11,10 +11,11 @@
             </span>
 
             <div class="d-flex align-items-center gap-3">
-                <div class="d-flex align-items-center text-decoration-none" style="color: #1B4D3E;">
+                
+                <a href="{{ route('perfil') }}" class="d-flex align-items-center text-decoration-none" style="color: #1B4D3E;">
                     <i class="bi bi-person-badge-fill me-2" style="font-size: 20px;"></i>
                     <span class="fw-semibold">{{ session('nombre_usuario', 'Admin') }}</span>
-                </div>
+                </a>
 
                 <a href="{{ route('logout') }}" class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
