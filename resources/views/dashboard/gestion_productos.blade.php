@@ -30,7 +30,7 @@
                             <th>Categoría</th>
                             <th>Precio</th>
                             <th>Stock</th>
-                            <th class="text-center" style="width: 150px;">Acciones</th>
+                            <th class="text-center" style="width: 120px;">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,13 +58,32 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3">
-                                            <i class="bi bi-trash3-fill me-1"></i> Eliminar
+                                    <div class="d-flex justify-content-center align-items-center gap-3">
+                                        <!-- ✏️ BOTÓN EDITAR (SOLO EL ÍCONO DEL LÁPIZ) -->
+                                        <button type="button" 
+                                                class="btn p-0 text-success btn-editar-producto"
+                                                style="font-size: 1.2rem; border: none; background: none;"
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#modalEditar"
+                                                data-id="{{ $producto->id }}"
+                                                data-nombre="{{ $producto->nombre }}"
+                                                data-precio="{{ $producto->precio }}"
+                                                data-stock="{{ $producto->stock }}"
+                                                data-id-categoria="{{ $producto->id_categoria }}"
+                                                data-descripcion="{{ $producto->descripcion }}"
+                                                title="Editar producto">
+                                            <i class="bi bi-pencil-square"></i>
                                         </button>
-                                    </form>
+
+                                        <!-- 🗑️ BOTÓN ELIMINAR (SOLO EL ÍCONO DEL TACHO) -->
+                                        <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');" class="m-0 d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn p-0 text-danger" style="font-size: 1.2rem; border: none; background: none;" title="Eliminar producto">
+                                                <i class="bi bi-trash3-fill"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -81,51 +100,65 @@
         </div>
     </div>
 
+    <!-- ========================================== -->
+    <!-- 🟢 MODAL AGREGAR PRODUCTO                  -->
+    <!-- ========================================== -->
     <div class="modal fade" id="modalAgregar" data-backdrop="false" data-bs-backdrop="false" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-success text-white py-2">
                     <h5 class="modal-title fw-bold" id="modalAgregarLabel"><i class="bi bi-flower1 me-2"></i>Registrar Producto</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body p-4">
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Nombre de la planta / insumo</label>
-                            <input type="text" name="nombre" class="form-control" required placeholder="Ej: Limonero Cuatro Estaciones">
-                        </div>
                         <div class="row">
-                            <div class="col-6 mb-3">
-                                <label class="form-label fw-semibold">Precio ($)</label>
-                                <input type="number" step="0.01" name="precio" class="form-control" required placeholder="0.00">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold mb-1">Nombre de la planta / insumo</label>
+                                    <input type="text" name="nombre" class="form-control" required placeholder="Ej: Limonero Cuatro Estaciones">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label fw-semibold mb-1">Precio ($)</label>
+                                        <input type="number" step="0.01" name="precio" class="form-control" required placeholder="0.00">
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label fw-semibold mb-1">Stock Disponible</label>
+                                        <input type="number" name="stock" class="form-control" required placeholder="0">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold mb-1">Categoría del Catálogo</label>
+                                    <select name="id_categoria" class="form-select select-categoria" required>
+                                        <option value="" disabled selected>Seleccione una categoría...</option>
+                                        <option value="1">Frutales</option>
+                                        <option value="2">Florales</option>
+                                        <option value="3">Aromáticas</option>
+                                        <option value="4">Interior</option>
+                                        <option value="5">Accesorios</option>
+                                        <option value="nueva" class="text-success fw-bold">➕ Nueva Categoría...</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 div-nueva-categoria" style="display: none;">
+                                    <label class="form-label text-success fw-semibold mb-1">Nombre de la Nueva Categoría</label>
+                                    <input type="text" name="nueva_categoria" class="form-control border-success" placeholder="Ej: Cactus y Suculentas">
+                                </div>
                             </div>
-                            <div class="col-6 mb-3">
-                                <label class="form-label fw-semibold">Stock Disponible</label>
-                                <input type="number" name="stock" class="form-control" required placeholder="0">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold mb-1">Descripción o Cuidados</label>
+                                    <textarea name="descripcion" class="form-control" rows="4" placeholder="Ej: Requiere pleno sol..." style="resize: none;"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold mb-1">Fotografía del Producto</label>
+                                    <input type="file" name="imagen" class="form-control" accept="image/*">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Categoría del Catálogo</label>
-                            <select name="id_categoria" class="form-select" required>
-                                <option value="" disabled selected>Seleccione una categoría...</option>
-                                <option value="1">Frutales</option>
-                                <option value="2">Florales</option>
-                                <option value="3">Aromáticas</option>
-                                <option value="4">Interior</option>
-                                <option value="5">Accesorios</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Descripción o Cuidados</label>
-                            <textarea name="descripcion" class="form-control" rows="3" placeholder="Ej: Requiere pleno sol..."></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Fotografía del Producto</label>
-                            <input type="file" name="imagen" class="form-control" accept="image/*">
                         </div>
                     </div>
-                    <div class="modal-footer bg-light">
+                    <div class="modal-footer bg-light py-2">
                         <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-success rounded-pill px-4">Guardar en Sistema</button>
                     </div>
@@ -133,4 +166,126 @@
             </div>
         </div>
     </div>
+
+    <!-- ========================================== -->
+    <!-- 🟢 MODAL EDITAR PRODUCTO (AHORA VERDE)     -->
+    <!-- ========================================== -->
+    <div class="modal fade" id="modalEditar" data-backdrop="false" data-bs-backdrop="false" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <!-- Cambiado de bg-warning a bg-success para unificar colores -->
+                <div class="modal-header bg-success text-white py-2">
+                    <h5 class="modal-title fw-bold" id="modalEditarLabel"><i class="bi bi-pencil-square me-2"></i>Editar Producto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="formEditarProducto" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body p-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold mb-1">Nombre de la planta / insumo</label>
+                                    <input type="text" id="edit_nombre" name="nombre" class="form-control" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label fw-semibold mb-1">Precio ($)</label>
+                                        <input type="number" step="0.01" id="edit_precio" name="precio" class="form-control" required>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label fw-semibold mb-1">Stock Disponible</label>
+                                        <input type="number" id="edit_stock" name="stock" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold mb-1">Categoría del Catálogo</label>
+                                    <select id="edit_id_categoria" name="id_categoria" class="form-select select-categoria" required>
+                                        <option value="1">Frutales</option>
+                                        <option value="2">Florales</option>
+                                        <option value="3">Aromáticas</option>
+                                        <option value="4">Interior</option>
+                                        <option value="5">Accesorios</option>
+                                        <option value="nueva" class="text-success fw-bold">➕ Nueva Categoría...</option>
+                                    </select>
+                                </div>
+                                <!-- Campo de nueva categoría (Estilo Verde) -->
+                                <div class="mb-3 div-nueva-categoria" style="display: none;">
+                                    <label class="form-label text-success fw-semibold mb-1">Nombre de la Nueva Categoría</label>
+                                    <input type="text" name="nueva_categoria" class="form-control border-success" placeholder="Ej: Macetas Premium">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold mb-1">Descripción o Cuidados</label>
+                                    <textarea id="edit_descripcion" name="descripcion" class="form-control" rows="4" style="resize: none;"></textarea>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label fw-semibold mb-1">Fotografía del Producto (Opcional)</label>
+                                    <input type="file" name="imagen" class="form-control" accept="image/*">
+                                    <small class="text-muted d-block mt-1" style="font-size: 0.75rem;">Dejá este campo vacío si no querés cambiar la imagen actual.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botón de guardado cambiado a Verde -->
+                    <div class="modal-footer bg-light py-2">
+                        <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success rounded-pill px-4">Actualizar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ⚡ SCRIPT JAVASCRIPT                       -->
+    <!-- ========================================== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const botonesEditar = document.querySelectorAll('.btn-editar-producto');
+        const formEditar = document.getElementById('formEditarProducto');
+
+        botonesEditar.forEach(boton => {
+            boton.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+                const nombre = this.getAttribute('data-nombre');
+                const precio = this.getAttribute('data-precio');
+                const stock = this.getAttribute('data-stock');
+                const idCategoria = this.getAttribute('data-id-categoria');
+                const descripcion = this.getAttribute('data-descripcion');
+
+                formEditar.action = `/admin/productos/${id}`;
+
+                document.getElementById('edit_nombre').value = nombre;
+                document.getElementById('edit_precio').value = precio;
+                document.getElementById('edit_stock').value = stock;
+                document.getElementById('edit_id_categoria').value = idCategoria;
+                document.getElementById('edit_descripcion').value = descripcion;
+
+                document.querySelectorAll('.div-nueva-categoria').forEach(div => div.style.display = 'none');
+            });
+        });
+
+        const selectsCategoria = document.querySelectorAll('.select-categoria');
+
+        selectsCategoria.forEach(select => {
+            select.addEventListener('change', function () {
+                const modalBody = this.closest('.modal-body');
+                const divNuevaCat = modalBody.querySelector('.div-nueva-categoria');
+                const inputNuevaCat = divNuevaCat.querySelector('input');
+
+                if (this.value === 'nueva') {
+                    divNuevaCat.style.display = 'block';
+                    inputNuevaCat.required = true;
+                    inputNuevaCat.focus();
+                } else {
+                    divNuevaCat.style.display = 'none';
+                    inputNuevaCat.required = false;
+                    inputNuevaCat.value = '';
+                }
+            });
+        });
+    });
+    </script>
 </x-layout-admin>

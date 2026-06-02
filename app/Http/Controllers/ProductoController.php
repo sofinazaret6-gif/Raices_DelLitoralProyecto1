@@ -15,15 +15,15 @@ class ProductoController extends Controller
         if ($slug_categoria) {
             $categoriaActual = Categoria::where('descripcion', $slug_categoria)->first();
 
-            // Traemos solo sus productos
+            // MODIFICADO: Traemos de la categoría solo los productos que tengan el estado activo (visibles)
             if ($categoriaActual) {
-                $productos = $categoriaActual->productos; 
+                $productos = $categoriaActual->productos()->where('estado', true)->get(); 
             } else {
                 $productos = collect();
             }
         } else {
-            // 2. Si no, traemos TODOS los productos de la DB
-            $productos = Producto::with('categoria')->get();
+            // 2. MODIFICADO: Si no seleccionó categoría, traemos TODOS los productos VISIBLES para los clientes
+            $productos = Producto::with('categoria')->where('estado', true)->get();
         }
 
         return view('frontend.productos', [
@@ -40,8 +40,17 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::with('categoria')->get();
-        // ARREGLADO: Ahora apunta a tu archivo real en la carpeta de Sofi
-        return view('dashboard.gestion_productos', compact('productos'));
+        // ARREGLADO: Ahora también trae las categorías para cargarlas en el modal de edición
+        $categorias = Categoria::all();
+        
+        return view('dashboard.gestion_productos', compact('productos', 'categorias'));
+    }
+
+    
+    public function gestionStock()
+    {
+        $productos = Producto::with('categoria')->get();
+        return view('dashboard.lista_productos', compact('productos'));
     }
 
     // Guarda un producto nuevo que el Admin completó en el formulario
@@ -68,6 +77,7 @@ class ProductoController extends Controller
             'descripcion'  => $request->descripcion,
             'id_categoria' => $request->id_categoria,
             'imagen'       => $nombreImagen,
+            'estado'       => true, // Se registra visible por defecto
         ]);
 
         return redirect()->route('productos.index')->with('success', '¡Producto añadido a la base de datos!');
@@ -90,5 +100,72 @@ class ProductoController extends Controller
 
         // Redireccionamos al listado con un mensaje de éxito para la alerta
         return redirect()->route('productos.index')->with('success', 'El producto ha sido eliminado correctamente del sistema.');
+    }
+
+    // Procesa los cambios de edición del lápiz
+    public function update(Request $request, $id)
+    {
+        $producto = Producto::findOrFail($id);
+
+        $request->validate([
+            'nombre'       => 'required|string|max:100',
+            'precio'       => 'required|numeric|min:0',
+            'stock'        => 'required|integer|min:0',
+            'id_categoria' => 'required|exists:categorias,id',
+            'descripcion'  => 'nullable|string',
+            'imagen'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+        ]);
+
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->stock = $request->stock;
+        $producto->id_categoria = $request->id_categoria;
+        $producto->descripcion = $request->descripcion;
+
+        // Si subiste una imagen nueva, borramos la vieja y guardamos la nueva
+        if ($request->hasFile('imagen')) {
+            if ($producto->imagen && !str_contains($producto->imagen, 'images/')) {
+                Storage::disk('public')->delete($producto->imagen);
+            }
+            $producto->imagen = $request->file('imagen')->store('productos', 'public');
+        }
+
+        $producto->save();
+
+        return redirect()->route('productos.index')->with('success', '¡Producto actualizado correctamente!');
+    }
+
+    /**
+     * 👁️ NUEVA FUNCIÓN: Alternar el estado de visibilidad del producto (Activo/Inactivo)
+     */
+    public function toggleEstado($id)
+    {
+        $producto = Producto::findOrFail($id);
+        
+        // Invierte el valor binario (true/false)
+        $producto->estado = !$producto->estado;
+        $producto->save();
+
+        $mensaje = $producto->estado 
+            ? "El producto '{$producto->nombre}' ahora es visible en la tienda." 
+            : "El producto '{$producto->nombre}' ha sido ocultado de la tienda.";
+
+        return redirect()->back()->with('success', $mensaje);
+    }
+
+    /**
+     * 🔄 NUEVA FUNCIÓN: Actualizar únicamente el stock del producto desde el modal compacto
+     */
+    public function updateStock(Request $request, $id)
+    {
+        $request->validate([
+            'stock' => 'required|integer|min:0',
+        ]);
+
+        $producto = Producto::findOrFail($id);
+        $producto->stock = $request->input('stock');
+        $producto->save();
+
+        return redirect()->back()->with('success', "Stock del producto '{$producto->nombre}' actualizado a {$producto->stock} unidades.");
     }
 }

@@ -49,8 +49,8 @@
                             <i class="bi bi-box-seam me-1"></i> Productos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
-                            <li><a class="dropdown-menu-item dropdown-item" href="/admin/productos">Listar Productos</a></li>
-                            <li><a class="dropdown-menu-item dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAgregar">Registrar Producto</a></li>
+                            <li><a class="dropdown-item" href="/admin/productos">Administrar</a></li>
+                            <li><a class="dropdown-item" href="{{ route('productos.gestionStock') }}">Stock y Visibilidad</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

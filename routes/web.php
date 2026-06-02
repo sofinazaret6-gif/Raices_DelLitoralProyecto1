@@ -83,7 +83,14 @@ Route::middleware(['role:1'])->group(function () {
     
     Route::post('/admin/consultas/{id}/responder', [AdminConsultaController::class, 'responder'])->name('consultas.responder');
 
-    // Rutas para que el Admin maneje los Productos (Listar, Agregar, Eliminar)
+    // 👁️ RUTA PARA EL OJO: Cambiar visibilidad/estado del producto
+    Route::patch('admin/productos/{id}/toggle-estado', [ProductoController::class, 'toggleEstado'])->name('productos.toggleEstado');
+
+    // 🔄 RUTA PARA EL MODAL: Modificar solo la cantidad de stock
+    Route::patch('admin/productos/{id}/stock', [ProductoController::class, 'updateStock'])->name('productos.updateStock');
+    // Ruta para entrar a ver la tabla de stock y visibilidad
+     Route::get('admin/gestion-stock', [ProductoController::class, 'gestionStock'])->name('productos.gestionStock');
+    // Rutas estándar para que el Admin maneje los Productos
     Route::resource('admin/productos', ProductoController::class)->names('productos');
 });
 
