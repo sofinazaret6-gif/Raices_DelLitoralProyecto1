@@ -59,6 +59,7 @@
                     
                     <li class="nav-item"><a class="nav-link" href="/">Principal</a></li>
                     <li class="nav-item"><a class="nav-link" href="/quienes-somos">Quiénes Somos</a></li>
+                     <li class="nav-item"><a class="nav-link" href="/catalogo">Catalogo</a></li>
                     <li class="nav-item"><a class="nav-link" href="/consultas">Contacto</a></li>
 
                     @if(!session()->has('id_usuario'))

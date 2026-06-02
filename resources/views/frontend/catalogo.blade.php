@@ -5,9 +5,8 @@
     <x-slot:barraP>
         <h4>EXPLORAR CATEGORÍAS</h4>
     </x-slot:barraP>
-   <!-- Carrusel de imágenes (Bootstrap) -->
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel"  data-bs-interval="2500">
-        
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ asset('images/nuestro-catalogo.jpeg') }}" class="d-block w-100" alt="Foto catalogos" style="height: 450px; object-fit: cover;">
@@ -17,7 +16,7 @@
             </div>
         </div>
     </div>
-   <!-- Notificación tipo "toast" (mensaje emergente) -->
+
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
         <div id="miToast" class="toast" data-bs-autohide="false">
             <div class="toast-header">
@@ -31,15 +30,37 @@
             </div>
         </div>
     </div>
-   <!-- Sección principal: categorías -->
+
     <div class="container mt-5">
-        <div class="text-center mb-5">
+        <div class="text-center mb-4">
             <h2 class="fw-bold" style="color:#1e3d2f;">Nuestras Categorías</h2>
             <p class="text-muted">Seleccioná una categoría para ver los productos disponibles</p>
         </div>
 
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-6">
+                <form action="{{ url('/productos') }}" method="GET" class="m-0">
+                    <div class="input-group">
+                        <input type="search" name="buscar" class="form-control rounded-start-pill border-success border-opacity-50 px-3" placeholder="¿Qué planta o accesorio buscás?" aria-label="Search">
+                        <button class="btn btn-success rounded-end-pill px-4" type="submit">
+                            <i class="bi bi-search"></i> Buscar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mb-5">
+            <p class="fs-5 text-muted">
+                ¿Preferís ver la lista completa? 
+                <a href="{{ url('/productos') }}" class="fw-bold text-success text-decoration-none">
+                    Ver todo →
+                </a>
+            </p>
+        </div>
+
         <div class="row">
-         <!-- Card de categoría (ejemplo: Frutales) -->
+            
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm border-0">
                     <div style="height: 200px; overflow: hidden;">
@@ -49,7 +70,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title fw-bold">Árboles Frutales</h5>
                         <p class="card-text text-muted">Variedades adaptadas al clima local para tu huerta.</p>
-                        <a href="{{ url('/productos/frutales') }}" class="btn btn-success mt-auto rounded-pill">Explorar Frutales</a>
+                        <a href="{{ url('/productos/1') }}" class="btn btn-success mt-auto rounded-pill">Explorar Frutales</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +84,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title fw-bold">Plantas Florales</h5>
                         <p class="card-text text-muted">Llená tu jardín de color con flores de estación.</p>
-                        <a href="{{ url('/productos/florales') }}" class="btn btn-success mt-auto rounded-pill">Explorar Florales</a>
+                        <a href="{{ url('/productos/2') }}" class="btn btn-success mt-auto rounded-pill">Explorar Florales</a>
                     </div>
                 </div>
             </div>
@@ -77,7 +98,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title fw-bold">Plantas de Interior</h5>
                         <p class="card-text text-muted">Ideales para decorar y purificar tu hogar.</p>
-                        <a href="{{ url('/productos/interior') }}" class="btn btn-success mt-auto rounded-pill">Explorar Interior</a>
+                        <a href="{{ url('/productos/3') }}" class="btn btn-success mt-auto rounded-pill">Explorar Interior</a>
                     </div>
                 </div>
             </div>
@@ -91,7 +112,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title fw-bold">Plantas Aromáticas</h5>
                         <p class="card-text text-muted">Aportan aroma y sabor a tus comidas.</p>
-                        <a href="{{ url('/productos/aromaticas') }}" class="btn btn-success mt-auto rounded-pill">Explorar Aromáticas</a>
+                        <a href="{{ url('/productos/4') }}" class="btn btn-success mt-auto rounded-pill">Explorar Aromáticas</a>
                     </div>
                 </div>
             </div>
@@ -105,7 +126,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title fw-bold">Accesorios</h5>
                         <p class="card-text text-muted">Macetas, sustratos y herramientas de cuidado.</p>
-                        <a href="{{ url('/productos/accesorios') }}" class="btn btn-success mt-auto rounded-pill">Ver Accesorios</a>
+                        <a href="{{ url('/productos/5') }}" class="btn btn-success mt-auto rounded-pill">Ver Accesorios</a>
                     </div>
                 </div>
             </div>
@@ -124,10 +145,7 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-   <!-- Script para mostrar el toast automáticamente -->
-    <script>
+        </div> </div> <script>
         document.addEventListener('DOMContentLoaded', function () {
             const toastEl = document.getElementById('miToast');
             const toast = new bootstrap.Toast(toastEl);
