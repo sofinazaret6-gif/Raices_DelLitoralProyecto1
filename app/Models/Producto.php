@@ -13,6 +13,7 @@ class Producto extends Model
         'imagen',
         'descripcion',
         'id_categoria', // Guardamos el ID de la categoría
+        'estado',
     ];
 
     /**

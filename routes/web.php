@@ -38,11 +38,14 @@ Route::get('/terminos', function () {
 // RUTAS DE CATÁLOGO (Conectadas a la Base de Datos)
 // ----------------------------------------------------
 
-// Redirecciona el catálogo general al método dinámico sin categoría
-Route::get('/catalogo', [ProductoController::class, 'ver_catalogo'])->name('catalogo');
+// Redirecciona al menú principal de categorías (con el buscador y carrusel)
+Route::get('/catalogo', [ProductoController::class, 'mostrarCategorias'])->name('catalogo');
 
-// Mantiene tu ruta original /productos/{categoria?} pero apuntando al nuevo controlador
-Route::get('/productos/{categoria?}', [ProductoController::class, 'ver_catalogo'])->name('ver.catalogo');
+// 🔍 SOLUCIÓN: Ruta limpia para ver TODOS los productos o usar el buscador principal
+Route::get('/productos', [ProductoController::class, 'ver_catalogo'])->name('ver.catalogo');
+
+// 🌿 SOLUCIÓN: Ruta exclusiva para filtrar categorías por su ID numérico (Evita conflictos)
+Route::get('/productos/{id_categoria}', [ProductoController::class, 'ver_catalogo'])->where('id_categoria', '[0-9]+');
 
 // ----------------------------------------------------
 
@@ -88,8 +91,10 @@ Route::middleware(['role:1'])->group(function () {
 
     // 🔄 RUTA PARA EL MODAL: Modificar solo la cantidad de stock
     Route::patch('admin/productos/{id}/stock', [ProductoController::class, 'updateStock'])->name('productos.updateStock');
+    
     // Ruta para entrar a ver la tabla de stock y visibilidad
-     Route::get('admin/gestion-stock', [ProductoController::class, 'gestionStock'])->name('productos.gestionStock');
+    Route::get('admin/gestion-stock', [ProductoController::class, 'gestionStock'])->name('productos.gestionStock');
+    
     // Rutas estándar para que el Admin maneje los Productos
     Route::resource('admin/productos', ProductoController::class)->names('productos');
 });
