@@ -14,6 +14,11 @@ class Persona extends Authenticatable
         'password',
         'id_perfil',
         'estado',
+          'dni',
+          'direccion',
+          'ciudad',
+          'provincia',
+          'codigo_postal',
     ];
 
     protected $hidden = [

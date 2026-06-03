@@ -23,12 +23,13 @@
                             <span class="small fw-semibold d-none d-md-inline">{{ session('nombre_usuario') }}</span>
                         </a>
                     </li>
+               @endif
                     <li class="nav-item">    
                         <a href="/carrito" class="nav-link px-2 color-navbar" title="Carrito de compras">
                             <i class="bi bi-cart3" style="font-size: 24px"></i>
                         </a>
                     </li>
-                @endif
+               
                 
             </ul>
 

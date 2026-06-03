@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminConsultaController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\PersonaController;
 
 // Ruta principal (home)
 Route::get('/', function () {
@@ -111,3 +113,51 @@ Route::delete('/perfil', [PerfilController::class, 'destroy'])->name('perfil.des
 // CONTRASEÑA
 Route::get('/perfil/password', [PerfilController::class, 'editPassword'])->name('perfil.password');
 Route::put('/perfil/password', [PerfilController::class, 'updatePassword'])->name('perfil.password.update');
+
+Route::get('/carrito', [CarritoController::class, 'index'])
+    ->name('carrito');
+
+Route::post('/carrito/agregar/{idProducto}',
+    [CarritoController::class, 'agregar'])
+    ->name('carrito.agregar');
+
+Route::put('/carrito/actualizar/{idProducto}',
+    [CarritoController::class, 'actualizar'])
+    ->name('carrito.actualizar');
+
+Route::delete('/carrito/eliminar/{idProducto}',
+    [CarritoController::class, 'eliminar'])
+    ->name('carrito.eliminar');
+
+Route::delete('/carrito/vaciar',
+    [CarritoController::class, 'vaciar'])
+    ->name('carrito.vaciar');
+
+Route::post('/carrito/finalizar',
+    [CarritoController::class, 'finalizar'])
+    ->name('carrito.finalizar');
+Route::get(
+    '/completar-datos-compra',
+    [PersonaController::class, 'formCompletarDatos']
+)->name('perfil.completar');
+
+Route::put(
+    '/completar-datos-compra',
+    [PersonaController::class, 'guardarDatosCompra']
+)->name('perfil.guardarDatosCompra');
+Route::post('/compra/confirmar',
+    [CarritoController::class, 'confirmarCompra']
+)->name('compra.confirmar');
+
+Route::get('/pago',
+    [CarritoController::class, 'formPago']
+)->name('pago');
+
+Route::post('/pago',
+    [CarritoController::class, 'procesarPago']
+)->name('compra.pagar');
+
+Route::post('/carrito/cancelar-confirmacion', function () {
+    session()->forget('confirmando_compra');
+    return redirect()->route('carrito');
+})->name('carrito.cancelar_confirmacion');

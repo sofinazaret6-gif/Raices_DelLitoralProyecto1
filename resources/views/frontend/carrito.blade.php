@@ -5,38 +5,290 @@
         <h4>CARRITO DE COMPRAS</h4>
     </x-slot:barraP>
 
-    <section class="py-5 d-flex align-items-center section-construccion">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-12 col-lg-6 z-index-top">
-                    <div class="card card-custom-carrito shadow-lg border-0">
-                        <div class="card-body p-5 text-center text-lg-start">
-                            
-                            <span class="badge rounded-pill mb-3 badge-proximamente">
-                                <i class="bi bi-seedling me-1"></i> Próximamente
-                            </span>
+    <div class="container mt-5">
 
-                            <h1 class="display-5 fw-bold mb-3 titulo-verde">
-                                Estamos <span class="texto-rama">cultivando</span> nuestro sistema de ventas.
-                            </h1>
-                            
-                            <p class="lead text-muted mb-5">
-                                Esta funcionalidad está en pleno crecimiento. Muy pronto podrás comprar tus plantas favoritas directamente desde aquí.
-                            </p>
+        <h2 class="mb-4 fw-bold text-success">
+            <i class="bi bi-cart3"></i> Mi carrito
+        </h2>
 
-                            <div class="d-grid gap-3 d-sm-flex justify-content-center justify-content-lg-start">
-                                <a href="{{ route('catalogo') }}" class="btn btn-success btn-lg px-5 rounded-pill shadow-sm btn-verde-vivero">
-                                    <i class="bi bi-arrow-left me-2"></i>Volver al Catálogo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+       
+        @if(session('error'))
+           <div class="alert alert-danger">
+              {{ session('error') }}
                 </div>
+        @endif
+        @if(empty($carrito))
+            <div class="alert alert-info shadow-sm">
+                Tu carrito está vacío.
+            </div>
+        @else
 
-                <div class="col-12 col-lg-5 d-none d-lg-block text-center">
-                    <i class="bi bi-cart-x icono-carrito-espera"></i>
+            @php
+                $total = 0;
+            @endphp
+
+            <div class="card shadow-sm border-0">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead class="table-success">
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th style="width: 150px;">Cantidad</th>
+                                <th>Subtotal</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach($carrito as $idProducto => $item)
+
+                                @php
+                                    $subtotal = $item['precio'] * $item['cantidad'];
+                                    $total += $subtotal;
+                                @endphp
+
+                                <tr>
+                                    <td>
+
+                                     @if(str_contains($item['imagen'], 'images/'))
+
+                                       <img src="{{ asset($item['imagen']) }}"
+                                          alt="{{ $item['nombre'] }}"
+                                        class="img-thumbnail"
+                                        style="width: 70px; height: 70px; object-fit: contain;">
+
+                                     @else
+
+                                         <img src="{{ asset('storage/' . $item['imagen']) }}"
+                                            alt="{{ $item['nombre'] }}"
+                                            class="img-thumbnail"
+                                            style="width: 70px; height: 70px; object-fit: contain;">
+
+                                            @endif
+
+                                    </td>
+                                    <td class="fw-semibold">
+                                        {{ $item['nombre'] }}
+                                    </td>
+
+                                    <td>
+                                        ${{ number_format($item['precio'], 0, ',', '.') }}
+                                    </td>
+
+                                  <td>
+
+                                    <form action="{{ route('carrito.actualizar', $idProducto) }}"
+                                                   method="POST"
+                                                         class="d-flex gap-2">
+
+                                                        @csrf
+                                                      @method('PUT')
+
+                                                       <input
+                                                          type="number"
+                                                            name="cantidad"
+                                                           value="{{ $item['cantidad'] }}"
+                                                             min="1"
+                                                          class="form-control"
+                                                           style="width:90px;">
+
+                                                            <button
+                                                           type="submit"
+                                                           class="btn btn-warning">
+                                                            Actualizar
+                                                          </button>
+
+                                                        </form>
+
+                                        </td>
+
+                                    <td class="fw-bold text-success">
+                                        ${{ number_format($subtotal, 0, ',', '.') }}
+                                    </td>
+
+                                    <td class="text-center">
+                                        <form action="{{ route('carrito.eliminar', $idProducto) }}"
+                                              method="POST"
+                                              class="mt-2">
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit"
+                                                    class="btn btn-outline-danger btn-sm">
+                                                Eliminar
+                                            </button>
+
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+
+                            @endforeach
+
+                        </tbody>
+
+                        <tfoot>
+                            <tr class="table-light">
+                                <td colspan="3" class="text-end fw-bold fs-5">
+                                    Total:
+                                </td>
+
+                                <td colspan="2" class="fw-bold fs-5 text-success">
+                                    ${{ number_format($total, 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
                 </div>
             </div>
+
+            <div class="d-flex justify-content-between mt-4">
+
+                <form action="{{ route('carrito.vaciar') }}"
+                      method="POST">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit"
+                            class="btn btn-outline-danger rounded-pill px-4">
+                        <i class="bi bi-trash"></i>
+                        Vaciar carrito
+                    </button>
+
+                </form>
+
+                <form action="{{ route('carrito.finalizar') }}"
+                      method="POST">
+
+                    @csrf
+
+                    <button type="submit"
+                            class="btn btn-success rounded-pill px-4">
+                        <i class="bi bi-check-circle"></i>
+                        Finalizar compra
+                    </button>
+
+                </form>
+
+            </div>
+
+        @endif
+
+    </div>
+<!-- ========================================== -->
+<!-- 🟢 MODAL CONFIRMAR COMPRA                  -->
+<!-- ========================================== -->
+@if(session('confirmando_compra') && $persona)
+
+<div class="modal fade"
+     id="confirmarCompraModal"
+     tabindex="-1"
+     aria-labelledby="confirmarCompraLabel"
+     aria-hidden="true"
+     data-bs-backdrop="false">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow-lg">
+
+            <!-- HEADER -->
+            <div class="modal-header bg-success text-white py-2">
+                <h5 class="modal-title fw-bold" id="confirmarCompraLabel">
+                    <i class="bi bi-check-circle me-2"></i>
+                    Confirmar Compra
+                </h5>
+
+                <a href="{{ route('carrito') }}"
+                   class="btn-close btn-close-white"
+                   aria-label="Close"></a>
+            </div>
+
+            <!-- BODY -->
+            <div class="modal-body p-4">
+
+                <h6 class="fw-bold text-success mb-3">
+                    Datos de envío
+                </h6>
+
+                <p class="mb-1">
+                    <strong>Cliente:</strong>
+                    {{ $persona->nombre }} {{ $persona->apellido }}
+                </p>
+
+                <p class="mb-1">
+                    <strong>DNI:</strong> {{ $persona->dni }}
+                </p>
+
+                <p class="mb-1">
+                    <strong>Teléfono:</strong> {{ $persona->telefono }}
+                </p>
+
+                <p class="mb-1">
+                    <strong>Dirección:</strong> {{ $persona->direccion }}
+                </p>
+
+                <p class="mb-3">
+                    {{ $persona->ciudad }},
+                    {{ $persona->provincia }}
+                    ({{ $persona->codigo_postal }})
+                </p>
+
+                <div class="alert alert-success py-2 mb-0">
+                    Revisá los datos antes de confirmar la compra.
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="modal-footer bg-light py-2">
+
+               <form action="{{ route('carrito.cancelar_confirmacion') }}" method="POST">
+                       @csrf
+                       <button type="submit"
+                 class="btn btn-secondary rounded-pill px-3">
+                             Cancelar
+                                     </button>
+                     </form>
+
+                <form action="{{ route('compra.confirmar') }}"
+                      method="POST">
+                    @csrf
+
+                    <button type="submit"
+                            class="btn btn-success rounded-pill px-4">
+                        <i class="bi bi-bag-check me-1"></i>
+                        Confirmar Compra
+                    </button>
+                </form>
+
+            </div>
+
         </div>
-    </section>
+
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = new bootstrap.Modal(
+        document.getElementById('confirmarCompraModal')
+    );
+    modal.show();
+});
+</script>
+
+@endif
+
 </x-layout>

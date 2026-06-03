@@ -135,8 +135,8 @@
                                         <option value="" disabled selected>Seleccione una categoría...</option>
                                         <option value="1">Frutales</option>
                                         <option value="2">Florales</option>
-                                        <option value="3">Aromáticas</option>
-                                        <option value="4">Interior</option>
+                                        <option value="3">Interior</option>
+                                        <option value="4">Aromaticas</option>
                                         <option value="5">Accesorios</option>
                                         <option value="nueva" class="text-success fw-bold">➕ Nueva Categoría...</option>
                                     </select>

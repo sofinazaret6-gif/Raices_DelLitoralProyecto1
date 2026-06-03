@@ -5,6 +5,11 @@
     </x-slot:barraP>
 
     <div class="container mt-5">
+        @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
         <div class="row">
              @forelse ($productos as $producto)
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
@@ -23,7 +28,34 @@
                             <p class="text-muted small">{{ $producto->descripcion }}</p>
                             <div class="mt-auto">
                                 <p class="text-success fw-bold fs-5">${{ number_format($producto->precio, 0, ',', '.') }}</p>
-                                 <a href="/carrito" class="btn btn-success w-100 rounded-pill">Agregar al carrito</a>
+                                 @php
+                     $carrito = session('carrito', []);
+                               @endphp
+
+                            @if(isset($carrito[$producto->id]))
+
+                                     <button
+                                   class="btn btn-secondary w-100 rounded-pill"
+                                        disabled>
+                                              Ya agregado al carrito
+                                         </button>
+
+                                        @else
+
+                            <form action="{{ route('carrito.agregar', $producto->id) }}"
+                            method="POST">
+
+                                        @csrf
+
+                                        <button
+                                          type="submit"
+                                    class="btn btn-success w-100 rounded-pill">
+                                Agregar al carrito
+                              </button>
+
+                           </form>
+
+                         @endif
                             </div>
                         </div>
                     </div>
