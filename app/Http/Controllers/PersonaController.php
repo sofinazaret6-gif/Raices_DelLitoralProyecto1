@@ -64,7 +64,7 @@ public function guardarDatosCompra(Request $request)
     ]);
 
     return redirect()
-    ->route('carrito.finalizar.get');
+    ->route('pago')
         ->with(
             'success',
             'Datos actualizados correctamente.'
