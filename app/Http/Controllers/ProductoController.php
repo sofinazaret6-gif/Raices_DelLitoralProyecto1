@@ -187,4 +187,11 @@ class ProductoController extends Controller
     {
         return view('frontend.catalogo');
     }
+
+    public function ocultarTodo()
+{
+    \App\Models\Producto::query()->update(['estado' => 0]);
+
+    return redirect()->back()->with('success', 'Se han ocultado todos los productos de la tienda correctamente.');
+}
 }

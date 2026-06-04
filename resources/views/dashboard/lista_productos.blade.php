@@ -11,10 +11,14 @@
                 <h2>Gestión de Stock y Visibilidad</h2>
                 <p class="text-muted mb-0">Controlá las existencias de tus plantas y cambiá la visibilidad de la tienda con un solo clic.</p>
             </div>
-            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 rounded-pill">
-                <i class="bi bi-shield-check me-1"></i> Modo Inventario Activo
-            </span>
-        </div>
+            
+            <form action="{{ route('productos.ocultarTodo') }}" method="POST" class="m-0">
+                @csrf
+                @method('PATCH') <button type="submit" class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 rounded-pill" style="cursor: pointer; font-family: inherit; font-size: inherit;">
+                    <i class="bi bi-eye-slash me-1"></i> Ocultar todo
+                </button>
+            </form>
+            </div>
 
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
@@ -107,6 +111,7 @@
         </div>
     </div>
 
+    {{-- Modales y Scripts permanecen igual --}}
     <div class="modal fade" id="modalStock" data-backdrop="false" data-bs-backdrop="false" tabindex="-1" aria-labelledby="modalStockLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg">

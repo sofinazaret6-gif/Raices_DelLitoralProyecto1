@@ -63,11 +63,14 @@ public function guardarDatosCompra(Request $request)
         'codigo_postal' => $request->codigo_postal,
     ]);
 
+    session(['confirmando_compra' => true]);
+
+    // Redirigimos al carrito de forma segura usando GET
     return redirect()
-    ->route('pago')
+        ->route('carrito')
         ->with(
             'success',
-            'Datos actualizados correctamente.'
+            'Datos actualizados correctamente. Ya podés confirmar tu compra abajo.'
         );
 }
 }
