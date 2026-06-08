@@ -34,5 +34,14 @@ class AdminController extends Controller
         '?subject=Respuesta a su consulta'
     );
 }
-    
+   public function listarVentas()
+   {
+       // Trae las ventas ordenadas por created_at con todas sus relaciones limpias
+       $ventas = \App\Models\Venta::with(['cliente', 'detalles.producto'])
+           ->orderBy('created_at', 'desc')
+           ->get();
+
+       return view('dashboard.listar-ventas', compact('ventas'));
+   }
+
 }

@@ -54,8 +54,10 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/ventas"><i class="bi bi-currency-dollar me-1"></i> Listar Ventas</a>
-                    </li>
+                         <a class="nav-link" href="{{ route('admin.ventas') }}">
+                         <i class="bi bi-currency-dollar me-1"></i> Listar Ventas
+                         </a>
+</li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/consultas"><i class="bi bi-envelope-paper me-1"></i> Ver Consultas</a>
                     </li>
