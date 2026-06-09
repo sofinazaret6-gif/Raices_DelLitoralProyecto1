@@ -59,7 +59,7 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center align-items-center gap-3">
-                                        <!-- ✏️ BOTÓN EDITAR (SOLO EL ÍCONO DEL LÁPIZ) -->
+                                    
                                         <button type="button" 
                                                 class="btn p-0 text-success btn-editar-producto"
                                                 style="font-size: 1.2rem; border: none; background: none;"
@@ -74,15 +74,6 @@
                                                 title="Editar producto">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-
-                                        <!-- 🗑️ BOTÓN ELIMINAR (SOLO EL ÍCONO DEL TACHO) -->
-                                        <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');" class="m-0 d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn p-0 text-danger" style="font-size: 1.2rem; border: none; background: none;" title="Eliminar producto">
-                                                <i class="bi bi-trash3-fill"></i>
-                                            </button>
-                                        </form>
                                     </div>
                                 </td>
                             </tr>

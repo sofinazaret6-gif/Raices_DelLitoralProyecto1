@@ -43,14 +43,13 @@ Route::get('/terminos', function () {
 // Redirecciona al menú principal de categorías (con el buscador y carrusel)
 Route::get('/catalogo', [ProductoController::class, 'mostrarCategorias'])->name('catalogo');
 
-// 🔍 SOLUCIÓN: Ruta limpia para ver TODOS los productos o usar el buscador principal
+// Ruta limpia para ver TODOS los productos o usar el buscador principal
 Route::get('/productos', [ProductoController::class, 'ver_catalogo'])->name('ver.catalogo');
 
-// 🌿 SOLUCIÓN: Ruta exclusiva para filtrar categorías por su ID numérico (Evita conflictos)
+// Ruta exclusiva para filtrar categorías por su ID numérico (Evita conflictos)
 Route::get('/productos/{id_categoria}', [ProductoController::class, 'ver_catalogo'])->where('id_categoria', '[0-9]+');
 
 // ----------------------------------------------------
-
 // Vista de consultas (pública)
 Route::get('/consultas', function () {
     return view('frontend.consultas');
@@ -71,14 +70,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 // Logout 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::patch('/admin/productos/ocultar-todo', [ProductoController::class, 'ocultarTodo'])
-    ->name('productos.ocultarTodo');
-
-// ----------------------------------------------------
-
-Route::get('/carrito', function () {
-    return view('frontend.carrito');
-})->name('carrito');
 
 // ----------------------------------------------------
 // PANEL DE ADMINISTRACIÓN (Protegido por tu Middleware de Rol 1)
@@ -100,12 +91,20 @@ Route::middleware(['role:1'])->group(function () {
     // Ruta para entrar a ver la tabla de stock y visibilidad
     Route::get('admin/gestion-stock', [ProductoController::class, 'gestionStock'])->name('productos.gestionStock');
     
+    // Rutas inteligentes para Ocultar todo y Mostrar todo
+    Route::patch('/admin/productos/ocultar-todo', [ProductoController::class, 'ocultarTodo'])->name('productos.ocultarTodo');
+    Route::patch('/admin/productos/mostrar-todo', [ProductoController::class, 'mostrarTodo'])->name('productos.mostrarTodo');
+
+    // MODIFICADO: Ahora conecta con la función del controlador para traer las ventas de la base de datos
+    Route::get('/admin/ventas', [AdminController::class, 'listarVentas'])->name('admin.ventas');
+
     // Rutas estándar para que el Admin maneje los Productos
     Route::resource('admin/productos', ProductoController::class)->names('productos');
 });
 
+
 // ----------------------------------------------------
-// RUTAS DE PERFIL Y CONFIGURACIÓN (Cambios de Sofi)
+// RUTAS DE PERFIL, CARRITO Y CONFIGURACIÓN
 // ----------------------------------------------------
 
 // PERFIL
@@ -117,48 +116,27 @@ Route::delete('/perfil', [PerfilController::class, 'destroy'])->name('perfil.des
 Route::get('/perfil/password', [PerfilController::class, 'editPassword'])->name('perfil.password');
 Route::put('/perfil/password', [PerfilController::class, 'updatePassword'])->name('perfil.password.update');
 
-Route::get('/carrito', [CarritoController::class, 'index'])
-    ->name('carrito');
+// CARRITO FLUJO
+Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito');
 
-Route::post('/carrito/agregar/{idProducto}',
-    [CarritoController::class, 'agregar'])
-    ->name('carrito.agregar');
+Route::post('/carrito/agregar/{idProducto}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 
-Route::put('/carrito/actualizar/{idProducto}',
-    [CarritoController::class, 'actualizar'])
-    ->name('carrito.actualizar');
+Route::put('/carrito/actualizar/{idProducto}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 
-Route::delete('/carrito/eliminar/{idProducto}',
-    [CarritoController::class, 'eliminar'])
-    ->name('carrito.eliminar');
+Route::delete('/carrito/eliminar/{idProducto}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
 
-Route::delete('/carrito/vaciar',
-    [CarritoController::class, 'vaciar'])
-    ->name('carrito.vaciar');
+Route::delete('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
 
-Route::post('/carrito/finalizar',
-    [CarritoController::class, 'finalizar'])
-    ->name('carrito.finalizar');
-Route::get(
-    '/completar-datos-compra',
-    [PersonaController::class, 'formCompletarDatos']
-)->name('perfil.completar');
+Route::post('/carrito/finalizar', [CarritoController::class, 'finalizar'])->name('carrito.finalizar');
 
-Route::put(
-    '/completar-datos-compra',
-    [PersonaController::class, 'guardarDatosCompra']
-)->name('perfil.guardarDatosCompra');
-Route::post('/compra/confirmar',
-    [CarritoController::class, 'confirmarCompra']
-)->name('compra.confirmar');
+// COMPRA
+Route::get('/completar-datos-compra', [PersonaController::class, 'formCompletarDatos'])->name('perfil.completar');
+Route::put('/completar-datos-compra', [PersonaController::class, 'guardarDatosCompra'])->name('perfil.guardarDatosCompra');
 
-Route::get('/pago',
-    [CarritoController::class, 'formPago']
-)->name('pago');
+Route::post('/compra/confirmar', [CarritoController::class, 'confirmarCompra'])->name('compra.confirmar');
 
-Route::post('/pago',
-    [CarritoController::class, 'procesarPago']
-)->name('compra.pagar');
+Route::get('/pago', [CarritoController::class, 'formPago'])->name('pago');
+Route::post('/pago', [CarritoController::class, 'procesarPago'])->name('compra.pagar');
 
 Route::post('/carrito/cancelar-confirmacion', function () {
     session()->forget('confirmando_compra');
