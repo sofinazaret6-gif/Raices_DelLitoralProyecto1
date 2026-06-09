@@ -174,6 +174,43 @@ public function cancelarConfirmacion()
 }
 public function confirmarCompra()
 {
+    return redirect()->route('pago');
+}
+public function formPago()
+{
+    $carrito = session()->get('carrito', []);
+
+    if (empty($carrito)) {
+
+        return redirect()
+            ->route('carrito')
+            ->with(
+                'error',
+                'El carrito está vacío.'
+            );
+    }
+
+    $total = 0;
+
+    foreach ($carrito as $item) {
+
+        $total +=
+            $item['precio']
+            * $item['cantidad'];
+    }
+
+    return view(
+        'frontend.pago',
+        compact('total')
+    );
+}
+
+public function procesarPago(Request $request)
+{
+    $request->validate([
+        'metodo_pago' => 'required'
+    ]);
+
     $carrito = session()->get('carrito', []);
 
     if (empty($carrito)) {
@@ -192,85 +229,16 @@ public function confirmarCompra()
 
         $total = 0;
 
-        foreach ($carrito as $item) {
-
-            $total +=
-                $item['precio']
-                * $item['cantidad'];
-        }
-
-        $venta = Venta::create([
-            'id_cliente' => session('id_usuario'),
-            'fecha' => now(),
-            'estadoVenta' => 'activa',
-            'total' => $total
-        ]);
-
+        // Verificar stock actual
         foreach ($carrito as $idProducto => $item) {
 
-            DetalleVenta::create([
-                'id_venta' => $venta->id,
-                'id_producto' => $idProducto,
-                'detalle_cant' => $item['cantidad'],
-                'detalle_precio' => $item['precio']
-            ]);
-        }
-
-        DB::commit();
-
-        session([
-            'venta_activa' => $venta->id
-        ]);
-
-        return redirect()->route('pago');
-
-    } catch (\Exception $e) {
-
-        DB::rollBack();
-
-        return redirect()
-            ->route('carrito')
-            ->with(
-                'error',
-                'Error al generar la compra.'
-            );
-    }
-}
-public function formPago()
-{
-    $venta = Venta::findOrFail(
-        session('venta_activa')
-    );
-
-    return view(
-        'frontend.pago',
-        compact('venta')
-    );
-}
-
-public function procesarPago(Request $request)
-{
-    $request->validate([
-        'metodo_pago' => 'required'
-    ]);
-
-    DB::beginTransaction();
-
-    try {
-
-        $venta = Venta::findOrFail(
-            session('venta_activa')
-        );
-
-        foreach ($venta->detalles as $detalle) {
-
             $producto = Producto::findOrFail(
-                $detalle->id_producto
+                $idProducto
             );
 
             if (
                 $producto->stock <
-                $detalle->detalle_cant
+                $item['cantidad']
             ) {
 
                 DB::rollBack();
@@ -283,41 +251,53 @@ public function procesarPago(Request $request)
                         . $producto->nombre
                     );
             }
+
+            $total +=
+                $item['precio']
+                * $item['cantidad'];
         }
 
-        foreach ($venta->detalles as $detalle) {
+        // Crear venta
+        $venta = Venta::create([
+            'id_cliente' => session('id_usuario'),
+            'fecha' => now(),
+            'estadoVenta' => 'realizada',
+            'metodo_pago' => $request->metodo_pago,
+            'total' => $total
+        ]);
+
+        // Crear detalles y descontar stock
+        foreach ($carrito as $idProducto => $item) {
+
+            DetalleVenta::create([
+                'id_venta' => $venta->id,
+                'id_producto' => $idProducto,
+                'detalle_cant' => $item['cantidad'],
+                'detalle_precio' => $item['precio']
+            ]);
 
             $producto = Producto::findOrFail(
-                $detalle->id_producto
+                $idProducto
             );
 
             $producto->stock -=
-                $detalle->detalle_cant;
+                $item['cantidad'];
 
             $producto->save();
         }
 
-        $venta->update([
-            'estadoVenta' => 'realizada',
-            'metodo_pago' => $request->metodo_pago
-        ]);
-
         DB::commit();
 
-$mensaje = $request->metodo_pago == 'efectivo'
-    ? 'Pedido registrado correctamente. Pago pendiente.'
-    : 'Pago registrado correctamente. Compra realizada.';
+        $mensaje = $request->metodo_pago == 'efectivo'
+            ? 'Pedido registrado correctamente.'
+            : 'Pago registrado correctamente.';
 
-$idVenta = $venta->id;
+        session()->forget('carrito');
+        session()->forget('confirmando_compra');
 
-session()->forget('carrito');
-session()->forget('venta_activa');
-session()->forget('confirmando_compra');
-
-return redirect()
-    ->route('comprobante', $idVenta)
-    ->with('success', $mensaje);
-      
+        return redirect()
+            ->route('comprobante', $venta->id)
+            ->with('success', $mensaje);
 
     } catch (\Exception $e) {
 
@@ -339,6 +319,21 @@ public function comprobante($id)
     return view(
         'frontend.comprobante',
         compact('venta')
+    );
+}
+public function misCompras()
+{
+    $ventas = Venta::with('detalles.producto')
+        ->where(
+            'id_cliente',
+            session('id_usuario')
+        )
+        ->orderBy('fecha', 'desc')
+        ->get();
+
+    return view(
+        'frontend.mis-compras',
+        compact('ventas')
     );
 }
 }

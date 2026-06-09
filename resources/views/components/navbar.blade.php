@@ -23,6 +23,14 @@
                             <span class="small fw-semibold d-none d-md-inline">{{ session('nombre_usuario') }}</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                          <a href="{{ route('mis-compras') }}"
+                                class="nav-link px-2 color-navbar"
+                                           title="Mis compras">
+                                    <i class="bi bi-bag-check-fill"
+                                         style="font-size: 24px"></i>
+                                   </a>
+                        </li>
                @endif
                     <li class="nav-item">    
                         <a href="/carrito" class="nav-link px-2 color-navbar" title="Carrito de compras">

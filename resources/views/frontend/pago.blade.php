@@ -33,7 +33,7 @@
 
                             <p class="mb-1">
                                 <strong>Total:</strong>
-                                ${{ number_format($venta->total, 0, ',', '.') }}
+                               ${{ number_format($total, 0, ',', '.') }}
                             </p>
 
                             <p class="mb-0">

@@ -147,3 +147,7 @@ Route::get(
     '/comprobante/{id}',
     [CarritoController::class, 'comprobante']
 )->name('comprobante');
+Route::get(
+    '/mis-compras',
+    [CarritoController::class, 'misCompras']
+)->name('mis-compras');
