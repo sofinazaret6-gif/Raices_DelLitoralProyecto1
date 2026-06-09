@@ -60,12 +60,20 @@ public function login(LoginRequest $request)
         ]);
     }
 
+    // Verificar si la cuenta está desactivada
+    if ($persona->estado == 0) {
+
+        return back()->withErrors([
+            'email' => 'Esta cuenta se encuentra desactivada.'
+        ]);
+    }
+
     session([
-        'id_usuario'     => $persona->id,
-        'nombre_usuario' => $persona->nombre,
-         'apellido_usuario'=> $persona->apellido,
-         'email_usuario'   => $persona->email,
-        'perfil_usuario' => $persona->id_perfil
+        'id_usuario'      => $persona->id,
+        'nombre_usuario'  => $persona->nombre,
+        'apellido_usuario'=> $persona->apellido,
+        'email_usuario'   => $persona->email,
+        'perfil_usuario'  => $persona->id_perfil
     ]);
 
     // Redirección según perfil

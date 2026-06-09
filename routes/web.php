@@ -13,7 +13,7 @@ use App\Http\Controllers\PersonaController;
 // Ruta principal (home)
 Route::get('/', function () {
     return view('frontend.principal');
-});
+})->name('principal');;
 
 // Vista "Quiénes somos"
 Route::get('/quienes-somos', function () {
@@ -164,3 +164,8 @@ Route::post('/carrito/cancelar-confirmacion', function () {
     session()->forget('confirmando_compra');
     return redirect()->route('carrito');
 })->name('carrito.cancelar_confirmacion');
+
+Route::get(
+    '/comprobante/{id}',
+    [CarritoController::class, 'comprobante']
+)->name('comprobante');

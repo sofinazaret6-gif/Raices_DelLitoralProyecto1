@@ -66,7 +66,7 @@
                                     class="form-check-label"
                                     for="efectivo">
 
-                                    💵 Efectivo (pago en el local)
+                                    💵 Efectivo 
 
                                 </label>
 
@@ -170,7 +170,7 @@
                                     class="btn btn-success btn-lg">
 
                                     <i class="bi bi-check-circle"></i>
-                                    Confirmar Pago
+                                    Finalizar Compra
 
                                 </button>
 

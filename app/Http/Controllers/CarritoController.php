@@ -12,36 +12,45 @@ use Illuminate\Http\Request;
 class CarritoController extends Controller
 {
     public function agregar($idProducto)
-    {
-        $producto = Producto::findOrFail($idProducto);
+{
+    $producto = Producto::findOrFail($idProducto);
 
-        $carrito = session()->get('carrito', []);
-
-      if (isset($carrito[$idProducto])) {
-
-    return back()->with(
-        'error',
-        'El producto ya está en el carrito. Modifica la cantidad desde el carrito.'
-    );
-
-} else {
-
-    $carrito[$idProducto] = [
-        'nombre' => $producto->nombre,
-        'precio' => $producto->precio,
-        'cantidad' => 1,
-        'stock' => $producto->stock,
-        'imagen' => $producto->imagen,
-    ];
-}
-
-        session(['carrito' => $carrito]);
+    // Verificar si hay stock
+    if ($producto->stock <= 0) {
 
         return back()->with(
-            'success',
-            'Producto agregado al carrito'
+            'error',
+            'Este producto no tiene stock disponible.'
         );
     }
+
+    $carrito = session()->get('carrito', []);
+
+    // Verificar si ya está en el carrito
+    if (isset($carrito[$idProducto])) {
+
+        return back()->with(
+            'error',
+            'El producto ya está en el carrito. Modifica la cantidad desde el carrito.'
+        );
+    }
+
+    // Agregar producto
+    $carrito[$idProducto] = [
+        'nombre'   => $producto->nombre,
+        'precio'   => $producto->precio,
+        'cantidad' => 1,
+        'stock'    => $producto->stock,
+        'imagen'   => $producto->imagen,
+    ];
+
+    session(['carrito' => $carrito]);
+
+    return back()->with(
+        'success',
+        'Producto agregado al carrito.'
+    );
+}
 
  public function index()
 {
@@ -295,16 +304,20 @@ public function procesarPago(Request $request)
 
         DB::commit();
 
-        session()->forget('carrito');
-        session()->forget('venta_activa');
-        session()->forget('confirmando_compra');
+$mensaje = $request->metodo_pago == 'efectivo'
+    ? 'Pedido registrado correctamente. Pago pendiente.'
+    : 'Pago registrado correctamente. Compra realizada.';
 
-        return redirect()
-            ->route('carrito')
-            ->with(
-                'success',
-                'Compra realizada correctamente.'
-            );
+$idVenta = $venta->id;
+
+session()->forget('carrito');
+session()->forget('venta_activa');
+session()->forget('confirmando_compra');
+
+return redirect()
+    ->route('comprobante', $idVenta)
+    ->with('success', $mensaje);
+      
 
     } catch (\Exception $e) {
 
@@ -317,5 +330,15 @@ public function procesarPago(Request $request)
                 'Error al procesar el pago.'
             );
     }
+}
+public function comprobante($id)
+{
+    $venta = Venta::with('detalles.producto')
+        ->findOrFail($id);
+
+    return view(
+        'frontend.comprobante',
+        compact('venta')
+    );
 }
 }

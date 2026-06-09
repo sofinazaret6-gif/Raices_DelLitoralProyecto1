@@ -27,36 +27,48 @@
                             <h5 class="fw-bold">{{ $producto->nombre }}</h5>
                             <p class="text-muted small">{{ $producto->descripcion }}</p>
                             <div class="mt-auto">
-                                <p class="text-success fw-bold fs-5">${{ number_format($producto->precio, 0, ',', '.') }}</p>
-                                 @php
-                     $carrito = session('carrito', []);
-                               @endphp
 
-                            @if(isset($carrito[$producto->id]))
+    <p class="text-success fw-bold fs-5">
+        ${{ number_format($producto->precio, 0, ',', '.') }}
+    </p>
 
-                                     <button
-                                   class="btn btn-secondary w-100 rounded-pill"
-                                        disabled>
-                                              Ya agregado al carrito
-                                         </button>
+    @php
+        $carrito = session('carrito', []);
+    @endphp
 
-                                        @else
+    @if($producto->stock <= 0)
 
-                            <form action="{{ route('carrito.agregar', $producto->id) }}"
-                            method="POST">
+        <button class="btn btn-danger w-100 rounded-pill" disabled>
+            Sin stock
+        </button>
 
-                                        @csrf
+    @elseif(isset($carrito[$producto->id]))
 
-                                        <button
-                                          type="submit"
-                                    class="btn btn-success w-100 rounded-pill">
-                                Agregar al carrito
-                              </button>
+        <button class="btn btn-secondary w-100 rounded-pill" disabled>
+            Ya agregado
+        </button>
 
-                           </form>
+    @else
 
-                         @endif
-                            </div>
+        <form action="{{ route('carrito.agregar', $producto->id) }}"
+              method="POST">
+
+            @csrf
+
+            <button type="submit"
+                    class="btn btn-success w-100 rounded-pill">
+                Agregar al carrito
+            </button>
+
+        </form>
+
+    @endif
+
+    <small class="text-muted d-block mt-2">
+        Stock disponible: {{ $producto->stock }}
+    </small>
+
+</div>
                         </div>
                     </div>
                 </div>

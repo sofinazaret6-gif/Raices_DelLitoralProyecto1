@@ -66,31 +66,32 @@ class PerfilController extends Controller
         );
     }
 
-    public function destroy()
-    {
-        // impedir borrar admin
-        if (
-            session('perfil_usuario') == 1
-        ) {
-            return back()->with(
-                'error',
-                'El administrador no puede eliminar su cuenta.'
-            );
-        }
+   public function destroy()
+{
+    if (session('perfil_usuario') == 1) {
 
-        $persona = Persona::find(
-            session('id_usuario')
+        return back()->with(
+            'error',
+            'El administrador no puede desactivar su cuenta.'
         );
-
-        // cerrar sesión
-        session()->flush();
-
-        // eliminar cuenta
-        $persona->delete();
-
-        return redirect('/');
     }
 
+    $persona = Persona::find(
+        session('id_usuario')
+    );
+
+    $persona->update([
+        'estado' => 0
+    ]);
+
+    session()->flush();
+
+    return redirect('/')
+        ->with(
+            'success',
+            'Tu cuenta fue desactivada correctamente.'
+        );
+}
     public function editPassword()
     {
         // ADMIN

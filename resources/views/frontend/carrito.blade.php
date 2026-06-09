@@ -93,18 +93,17 @@
                                                       @method('PUT')
 
                                                        <input
-                                                          type="number"
-                                                            name="cantidad"
-                                                           value="{{ $item['cantidad'] }}"
-                                                             min="1"
+                                                         type="number"
+                                                         name="cantidad"
+                                                        value="{{ $item['cantidad'] }}"
+                                                           min="1"
+                                                          max="{{ $item['stock'] }}"
                                                           class="form-control"
-                                                           style="width:90px;">
-
-                                                            <button
-                                                           type="submit"
-                                                           class="btn btn-warning">
-                                                            Actualizar
-                                                          </button>
+                                                        style="width:90px;"
+                                                          onchange="this.form.submit();">
+                                                       <small class="text-muted">
+                                                   Stock disponible: {{ $item['stock'] }}
+                                                    </small>
 
                                                         </form>
 

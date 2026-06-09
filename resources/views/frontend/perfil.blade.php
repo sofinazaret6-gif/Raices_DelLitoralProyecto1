@@ -131,9 +131,9 @@
                    <button type="submit"
                          class="btn btn-danger"
                            onclick="return confirm(
-                                '¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.'
+                                '¿Seguro que deseas desactivar tu cuenta?.'
                                 )">
-                                 Eliminar cuenta
+                                 Desactivar cuenta
                             </button>
                 </form>
 
