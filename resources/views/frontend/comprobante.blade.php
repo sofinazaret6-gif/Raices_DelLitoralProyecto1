@@ -146,14 +146,24 @@
 
                 </div>
 
-                <div class="text-center mt-4">
+                <div class="text-center mt-4 d-flex justify-content-center gap-2">
 
-                    <a href="{{ route('principal') }}"
-                       class="btn btn-success rounded-pill px-4">
+                    <a href="{{ route('principal') }}" 
+                       class="btn btn-outline-success rounded-pill px-4">
+                        <i class="bi bi-house"></i> Volver al inicio
+                    </a>
 
-                        <i class="bi bi-house"></i>
-                        Volver al inicio
+                    @php
+                        $numeroEmpresa = "5493794744608"; 
+                        $mensaje = "Hola Raíces del Litoral! Acabo de finalizar mi compra N° " . $venta->id . ". Me gustaría coordinar el envío y efectuar el pago en efectivo.";
+                        $urlWhatsApp = "https://wa.me/" . $numeroEmpresa . "?text=" . urlencode($mensaje);
+                    @endphp
 
+                    <a href="{{ $urlWhatsApp }}" 
+                       target="_blank" 
+                       class="btn btn-success rounded-pill px-4 shadow-sm fw-semibold"
+                       style="background-color: #25D366; border-color: #25D366;">
+                        <i class="bi bi-whatsapp"></i> Coordinar envío
                     </a>
 
                 </div>

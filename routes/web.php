@@ -10,10 +10,8 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PersonaController;
 
-// Ruta principal (home)
-Route::get('/', function () {
-    return view('frontend.principal');
-})->name('principal');;
+// 🟢 MODIFICADO: Ruta principal (home) conectada al controlador para ver destacados dinámicos
+Route::get('/', [ProductoController::class, 'ver_principal'])->name('principal');
 
 // Vista "Quiénes somos"
 Route::get('/quienes-somos', function () {
@@ -147,6 +145,7 @@ Route::get(
     '/comprobante/{id}',
     [CarritoController::class, 'comprobante']
 )->name('comprobante');
+
 Route::get(
     '/mis-compras',
     [CarritoController::class, 'misCompras']

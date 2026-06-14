@@ -98,7 +98,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title fw-bold">Plantas de Interior</h5>
                         <p class="card-text text-muted">Ideales para decorar y purificar tu hogar.</p>
-                        <a href="{{ url('/productos/3') }}" class="btn btn-success mt-auto rounded-pill">Explorar Interior</a>
+                        <a href="{{ url('/productos/4') }}" class="btn btn-success mt-auto rounded-pill">Explorar Interior</a>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title fw-bold">Plantas Aromáticas</h5>
                         <p class="card-text text-muted">Aportan aroma y sabor a tus comidas.</p>
-                        <a href="{{ url('/productos/4') }}" class="btn btn-success mt-auto rounded-pill">Explorar Aromáticas</a>
+                        <a href="{{ url('/productos/3') }}" class="btn btn-success mt-auto rounded-pill">Explorar Aromáticas</a>
                     </div>
                 </div>
             </div>
@@ -145,7 +145,10 @@
                 </div>
             </div>
 
-        </div> </div> <script>
+        </div> 
+    </div> 
+
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const toastEl = document.getElementById('miToast');
             const toast = new bootstrap.Toast(toastEl);

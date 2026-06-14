@@ -40,7 +40,6 @@ class AdminController extends Controller
             'ultimasVentas'
         ));
     }
-
     public function consultas()
     {
         $consultas = Consulta::all();
