@@ -10,18 +10,31 @@ use Illuminate\Support\Facades\Storage;
 class ProductoController extends Controller
 {
     /**
+     * Muestra la página principal con los productos destacados de la BD
+     */
+    public function ver_principal()
+    {
+        
+        $productosDestacados = Producto::where('estado', true)
+                                       ->latest()
+                                       ->take(3)
+                                       ->get();
+
+        return view('frontend.principal', compact('productosDestacados'));
+    }
+
+    /**
      * listado de productos filtrado por categoría o por el buscador
      */
     public function ver_catalogo(Request $request, $id_categoria = null) 
     {
-     
+        $categoriaActual = null;
+
         if ($id_categoria) {
-            
-            
+            // Buscamos el objeto de la categoría completo en la BD
             $categoriaActual = Categoria::find($id_categoria);
 
             if ($categoriaActual) {
-        
                 $productos = Producto::where('id_categoria', $id_categoria)
                                      ->where('estado', true)
                                      ->get(); 
@@ -30,10 +43,8 @@ class ProductoController extends Controller
             }
             
         } else {
-            
             $query = Producto::with('categoria')->where('estado', true);
 
-            
             if ($request->has('buscar') && $request->buscar != '') {
                 $query->where('nombre', 'LIKE', '%' . $request->buscar . '%');
             }
@@ -41,21 +52,20 @@ class ProductoController extends Controller
             $productos = $query->get();
         }
 
+        // Enviamos el objeto completo a la vista
         return view('frontend.productos', [
             'productos' => $productos,
-            'categoria' => $id_categoria
+            'categoria' => $categoriaActual 
         ]);
     }
 
     /**
-     *   FUNCIONES DEL ADMINISTRADOR
+     * FUNCIONES DEL ADMINISTRADOR
      */
 
-    // Muestra la lista de productos en el Panel de Control del Admin
     public function index()
     {
         $productos = Producto::with('categoria')->get();
-        
         $categorias = Categoria::all();
         
         return view('dashboard.gestion_productos', compact('productos', 'categorias'));
@@ -67,7 +77,6 @@ class ProductoController extends Controller
         return view('dashboard.lista_productos', compact('productos'));
     }
 
-  
     public function store(Request $request)
     {
         $request->validate([
@@ -91,32 +100,25 @@ class ProductoController extends Controller
             'descripcion'  => $request->descripcion,
             'id_categoria' => $request->id_categoria,
             'imagen'       => $nombreImagen,
-            'estado'       => true, // visible por defecto
+            'estado'       => true, 
         ]);
 
         return redirect()->route('productos.index')->with('success', '¡Producto añadido a la base de datos!');
     }
 
-    
     public function destroy($id)
     {
-        
         $producto = Producto::findOrFail($id);
 
-        
         if ($producto->imagen && !str_contains($producto->imagen, 'images/')) {
-            // Borra la foto de la carpeta storage/app/public/productos
             Storage::disk('public')->delete($producto->imagen);
         }
 
-        
         $producto->delete();
 
-        // Redireccionamos al listado con un mensaje de éxito para la alerta
         return redirect()->route('productos.index')->with('success', 'El producto ha sido eliminado correctamente del sistema.');
     }
 
-    
     public function update(Request $request, $id)
     {
         $producto = Producto::findOrFail($id);
@@ -136,7 +138,6 @@ class ProductoController extends Controller
         $producto->id_categoria = $request->id_categoria;
         $producto->descripcion = $request->descripcion;
 
-        
         if ($request->hasFile('imagen')) {
             if ($producto->imagen && !str_contains($producto->imagen, 'images/')) {
                 Storage::disk('public')->delete($producto->imagen);
@@ -149,14 +150,10 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')->with('success', '¡Producto actualizado correctamente!');
     }
 
-    /**
-     * visibilidad del producto (Activo/Inactivo)
-     */
     public function toggleEstado($id)
     {
         $producto = Producto::findOrFail($id);
         
-        // Invierte el valor binario (true/false)
         $producto->estado = !$producto->estado;
         $producto->save();
 
@@ -180,18 +177,15 @@ class ProductoController extends Controller
         return redirect()->back()->with('success', "Stock del producto '{$producto->nombre}' actualizado a {$producto->stock} unidades.");
     }
     
-    /**
-     * Retorna la vista principal del catálogo de categorías
-     */
     public function mostrarCategorias()
     {
-        return view('frontend.catalogo');
+        $categorias = Categoria::all();
+        return view('frontend.catalogo', compact('categorias'));
     }
 
     public function ocultarTodo()
-{
-    \App\Models\Producto::query()->update(['estado' => 0]);
-
-    return redirect()->back()->with('success', 'Se han ocultado todos los productos de la tienda correctamente.');
-}
+    {
+        \App\Models\Producto::query()->update(['estado' => 0]);
+        return redirect()->back()->with('success', 'Se han ocultado todos los productos de la tienda correctamente.');
+    }
 }
