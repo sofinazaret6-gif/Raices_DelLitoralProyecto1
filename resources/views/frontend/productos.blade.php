@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>Nuestros Productos</x-slot:title>
      <x-slot:barraP>
-        <h4>{{ strtoupper($categoria ?? 'Catálogo Completo') }}</h4>
+        <h4>{{ strtoupper($categoria ?? 'Catalogo Completo') }}</h4>
     </x-slot:barraP>
 
     <div class="container mt-5">
