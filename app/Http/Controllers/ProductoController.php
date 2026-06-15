@@ -79,13 +79,23 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
+        // 1. Si eligió "nueva", primero creamos la categoría dinámicamente para tener un ID real
+        if ($request->id_categoria === 'nueva' && $request->filled('nueva_categoria')) {
+            $nuevaCat = Categoria::create([
+                'descripcion' => $request->nueva_categoria
+            ]);
+            // Reemplazamos el valor "nueva" por el ID recién creado en la base de datos
+            $request->merge(['id_categoria' => $nuevaCat->id]);
+        }
+
+        // 2. Modificamos la validación (Cambiamos 'image' por 'file|mimes:...')
         $request->validate([
             'nombre'       => 'required|string|max:100',
             'precio'       => 'required|numeric|min:0',
             'stock'        => 'required|integer|min:0',
             'descripcion'  => 'nullable|string',
             'id_categoria' => 'required|exists:categorias,id',
-            'imagen'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'imagen'       => 'nullable|file|mimes:jpeg,png,jpg,webp|max:10506', // Con 'file|mimes' el PNG no falla jamás
         ]);
 
         $nombreImagen = null;
@@ -123,13 +133,22 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
 
+        // 1. Lo mismo por si editan y deciden crear una categoría nueva al vuelo
+        if ($request->id_categoria === 'nueva' && $request->filled('nueva_categoria')) {
+            $nuevaCat = Categoria::create([
+                'descripcion' => $request->nueva_categoria
+            ]);
+            $request->merge(['id_categoria' => $nuevaCat->id]);
+        }
+
+        // 2. Modificamos la validación del update
         $request->validate([
             'nombre'       => 'required|string|max:100',
             'precio'       => 'required|numeric|min:0',
             'stock'        => 'required|integer|min:0',
             'id_categoria' => 'required|exists:categorias,id',
             'descripcion'  => 'nullable|string',
-            'imagen'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+            'imagen'       => 'nullable|file|mimes:jpeg,png,jpg,webp|max:10240' 
         ]);
 
         $producto->nombre = $request->nombre;

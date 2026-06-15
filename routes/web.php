@@ -10,129 +10,75 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PersonaController;
 
-// 🟢 MODIFICADO: Ruta principal (home) conectada al controlador para ver destacados dinámicos
+// Ruta principal (home)
 Route::get('/', [ProductoController::class, 'ver_principal'])->name('principal');
 
-// Vista "Quiénes somos"
-Route::get('/quienes-somos', function () {
-    return view('frontend.quienes-somos');
-});
-
-// Vista de comercialización
-Route::get('/comercializacion', function () {
-    return view('frontend.comercializacion');
-});
-
-// Formulario de contacto
-Route::get('/contacto', function () {
-    return view('frontend.contacto');
-});
+// Vistas estáticas
+Route::get('/quienes-somos', function () { return view('frontend.quienes-somos'); });
+Route::get('/comercializacion', function () { return view('frontend.comercializacion'); });
+Route::get('/contacto', function () { return view('frontend.contacto'); });
 Route::post('/contacto', [ContactoController::class, 'procesar']);
-
-// Vista de términos y condiciones
-Route::get('/terminos', function () {
-    return view('frontend.terminos');
-});
+Route::get('/terminos', function () { return view('frontend.terminos'); });
+Route::get('/consultas', function () { return view('frontend.consultas'); });
 
 // ----------------------------------------------------
-// RUTAS DE CATÁLOGO (Conectadas a la Base de Datos)
+// RUTAS DE CATÁLOGO
 // ----------------------------------------------------
-
-// Redirecciona al menú principal de categorías (con el buscador y carrusel)
 Route::get('/catalogo', [ProductoController::class, 'mostrarCategorias'])->name('catalogo');
-
-// Ruta limpia para ver TODOS los productos o usar el buscador principal
 Route::get('/productos', [ProductoController::class, 'ver_catalogo'])->name('ver.catalogo');
-
-// Ruta exclusiva para filtrar categorías por su ID numérico (Evita conflictos)
 Route::get('/productos/{id_categoria}', [ProductoController::class, 'ver_catalogo'])->where('id_categoria', '[0-9]+');
 
 // ----------------------------------------------------
-// Vista de consultas (pública)
-Route::get('/consultas', function () {
-    return view('frontend.consultas');
-});
-
+// RUTAS DE AUTENTICACIÓN
 // ----------------------------------------------------
-// RUTAS DE AUTENTICACIÓN (Unificadas en AuthController)
-// ----------------------------------------------------
-
-// Registro 
 Route::get('/registrarse', [AuthController::class, 'formularioRegistro'])->name('registrarse');
 Route::post('/registrarse', [AuthController::class, 'registrar'])->name('registrarse.guardar');
-
-// Login 
 Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-
-// Logout 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
 // ----------------------------------------------------
-// PANEL DE ADMINISTRACIÓN (Protegido por tu Middleware de Rol 1)
+// PANEL DE ADMINISTRACIÓN
 // ----------------------------------------------------
 Route::middleware(['role:1'])->group(function () {
-
     Route::get('/admin', [AdminController::class, 'index']);
-    
     Route::get('/admin/consultas', [AdminController::class, 'consultas']);
-    
     Route::post('/admin/consultas/{id}/responder', [AdminConsultaController::class, 'responder'])->name('consultas.responder');
-
-    // 👁️ RUTA PARA EL OJO: Cambiar visibilidad/estado del producto
     Route::patch('admin/productos/{id}/toggle-estado', [ProductoController::class, 'toggleEstado'])->name('productos.toggleEstado');
-
-    // 🔄 RUTA PARA EL MODAL: Modificar solo la cantidad de stock
     Route::patch('admin/productos/{id}/stock', [ProductoController::class, 'updateStock'])->name('productos.updateStock');
-    
-    // Ruta para entrar a ver la tabla de stock y visibilidad
     Route::get('admin/gestion-stock', [ProductoController::class, 'gestionStock'])->name('productos.gestionStock');
-    
-    // Rutas inteligentes para Ocultar todo y Mostrar todo
     Route::patch('/admin/productos/ocultar-todo', [ProductoController::class, 'ocultarTodo'])->name('productos.ocultarTodo');
     Route::patch('/admin/productos/mostrar-todo', [ProductoController::class, 'mostrarTodo'])->name('productos.mostrarTodo');
-
-    // MODIFICADO: Ahora conecta con la función del controlador para traer las ventas de la base de datos
     Route::get('/admin/ventas', [AdminController::class, 'listarVentas'])->name('admin.ventas');
-
-    // Rutas estándar para que el Admin maneje los Productos
     Route::resource('admin/productos', ProductoController::class)->names('productos');
 });
 
-
 // ----------------------------------------------------
-// RUTAS DE PERFIL, CARRITO Y CONFIGURACIÓN
+// PERFIL Y CONFIGURACIÓN
 // ----------------------------------------------------
-
-// PERFIL
 Route::get('/perfil', [PerfilController::class, 'edit'])->name('perfil');
 Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
 Route::delete('/perfil', [PerfilController::class, 'destroy'])->name('perfil.destroy');
-
-// CONTRASEÑA
 Route::get('/perfil/password', [PerfilController::class, 'editPassword'])->name('perfil.password');
 Route::put('/perfil/password', [PerfilController::class, 'updatePassword'])->name('perfil.password.update');
 
-// CARRITO FLUJO
+// ----------------------------------------------------
+// FLUJO DEL CARRITO DE COMPRAS
+// ----------------------------------------------------
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito');
-
 Route::post('/carrito/agregar/{idProducto}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
-
 Route::put('/carrito/actualizar/{idProducto}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
-
 Route::delete('/carrito/eliminar/{idProducto}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
-
 Route::delete('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
 
+// 🔄 FINALIZAR: Chequea datos personales
 Route::post('/carrito/finalizar', [CarritoController::class, 'finalizar'])->name('carrito.finalizar');
 
-// COMPRA
+// 📝 DATOS COMPRA
 Route::get('/completar-datos-compra', [PersonaController::class, 'formCompletarDatos'])->name('perfil.completar');
 Route::put('/completar-datos-compra', [PersonaController::class, 'guardarDatosCompra'])->name('perfil.guardarDatosCompra');
 
-Route::post('/compra/confirmar', [CarritoController::class, 'confirmarCompra'])->name('compra.confirmar');
-
+// 💳 PAGO: Eliminamos '/compra/confirmar' que hacía puente y rompía el flujo
 Route::get('/pago', [CarritoController::class, 'formPago'])->name('pago');
 Route::post('/pago', [CarritoController::class, 'procesarPago'])->name('compra.pagar');
 
@@ -141,12 +87,5 @@ Route::post('/carrito/cancelar-confirmacion', function () {
     return redirect()->route('carrito');
 })->name('carrito.cancelar_confirmacion');
 
-Route::get(
-    '/comprobante/{id}',
-    [CarritoController::class, 'comprobante']
-)->name('comprobante');
-
-Route::get(
-    '/mis-compras',
-    [CarritoController::class, 'misCompras']
-)->name('mis-compras');
+Route::get('/comprobante/{id}', [CarritoController::class, 'comprobante'])->name('comprobante');
+Route::get('/mis-compras', [CarritoController::class, 'misCompras'])->name('mis-compras');

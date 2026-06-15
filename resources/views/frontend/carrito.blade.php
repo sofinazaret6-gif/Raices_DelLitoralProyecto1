@@ -27,7 +27,9 @@
             <div class="alert alert-info shadow-sm">
                 Tu carrito está vacío.
             </div>
-        @else
+        @endif
+
+        @if(!empty($carrito))
 
             @php
                 $total = 0;
@@ -214,8 +216,8 @@
                                 <i class="bi bi-pencil-square me-1"></i> Editar datos
                             </a>
 
-                            <form action="{{ route('compra.confirmar') }}" method="POST" class="m-0">
-                                @csrf
+                            <form action="{{ route('pago') }}" method="GET" class="m-0">
+                                <input type="hidden" name="total" value="{{ $total }}">
                                 <button type="submit" class="btn btn-success rounded-pill px-4">
                                     <i class="bi bi-bag-check me-1"></i> Confirmar Compra
                                 </button>
