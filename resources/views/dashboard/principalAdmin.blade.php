@@ -25,7 +25,7 @@
                 </div>
             </div>
                 
-                <div class="col-md-3">
+            <div class="col-md-3">
                 <div class="card border-0 shadow-sm" style="border-top: 4px solid #145a32 !important;">
                     <div class="card-body p-3">
                         <div class="d-flex align-items-center justify-content-between mb-2">
@@ -38,7 +38,6 @@
                 </div>
             </div>
               
-
             <div class="col-md-3">
                 <div class="card border-0 shadow-sm" style="border-top: 4px solid #ffc107 !important;">
                     <div class="card-body p-3">
@@ -53,24 +52,24 @@
             </div>
 
             <div class="col-md-3">
-    <div class="card border-0 shadow-sm" style="border-top: 4px solid #fd1414 !important;">
-        <div class="card-body p-3">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="text-muted fw-bold small text-uppercase">Productos con bajo Stock</span>
-                <i class="bi bi-exclamation-triangle fs-4 text-warning"></i>
+                <div class="card border-0 shadow-sm" style="border-top: 4px solid #fd1414 !important;">
+                    <div class="card-body p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="text-muted fw-bold small text-uppercase">Productos con bajo Stock</span>
+                            <i class="bi bi-exclamation-triangle fs-4 text-warning"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">{{ $bajoStock }}</h3>
+                        <span class="text-muted small">Menos de 5 unidades</span>
+                    </div>
+                </div>
             </div>
-            <h3 class="fw-bold mb-1">{{ $bajoStock }}</h3>
-            <span class="text-muted small">Menos de 5 unidades</span>
-        </div>
-    </div>
-</div>
         </div>
 
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-white border-0 py-3 d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0 fw-bold"><i class="bi bi-clock-history me-2 text-muted"></i>Últimas 5 Ventas Realizadas</h5>
+                        <h5 class="mb-0 fw-bold"><i class="bi bi-clock-history me-2 text-muted"></i>Últimas 5 Ventas Realizadas hoy</h5>
                         <a href="{{ route('admin.ventas') }}" class="btn btn-sm btn-link text-decoration-none">Ver Historial Completo</a>
                     </div>
                     <div class="table-responsive px-3 pb-3">
@@ -123,6 +122,9 @@
                             </a>
                             <a href="/admin/consultas" class="btn btn-white border text-start shadow-sm rounded-3 py-2">
                                 <i class="bi bi-chat-left-dots me-2 text-warning"></i> Atender Consultas Web
+                            </a>
+                            <a href="{{ route('admin.usuarios') }}" class="btn btn-white border text-start shadow-sm rounded-3 py-2">
+                                <i class="bi bi-people me-2 text-info"></i> Gestionar Usuarios / Clientes
                             </a>
                         </div>
                         <div class="mt-4 pt-3 border-top text-center text-muted small">

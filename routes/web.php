@@ -89,3 +89,4 @@ Route::post('/carrito/cancelar-confirmacion', function () {
 
 Route::get('/comprobante/{id}', [CarritoController::class, 'comprobante'])->name('comprobante');
 Route::get('/mis-compras', [CarritoController::class, 'misCompras'])->name('mis-compras');
+Route::get('/admin/usuarios', [App\Http\Controllers\AdminController::class, 'listarUsuarios'])->name('admin.usuarios');
