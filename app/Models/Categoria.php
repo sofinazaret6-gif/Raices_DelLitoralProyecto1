@@ -15,7 +15,7 @@ class Categoria extends Model
      */
     public function productos()
     {
-        // Conectamos con el modelo Producto usando la clave foránea 'id_categoria'
+        
         return $this->hasMany(Producto::class, 'id_categoria');
     }
 }

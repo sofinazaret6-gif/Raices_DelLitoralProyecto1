@@ -65,7 +65,6 @@ public function guardarDatosCompra(Request $request)
 
     session(['confirmando_compra' => true]);
 
-    // Redirigimos al carrito de forma segura usando GET
     return redirect()
         ->route('carrito')
         ->with(

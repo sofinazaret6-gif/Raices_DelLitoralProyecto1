@@ -29,7 +29,7 @@ class Persona extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // Relación con la tabla de perfiles
+    
     public function perfil()
     {
         return $this->belongsTo(Perfil::class, 'id_perfil');

@@ -12,7 +12,7 @@ class Producto extends Model
         'stock',
         'imagen',
         'descripcion',
-        'id_categoria', // Guardamos el ID de la categoría
+        'id_categoria', 
         'estado',
     ];
 

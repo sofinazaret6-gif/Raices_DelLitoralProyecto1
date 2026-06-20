@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
-    /**
-     * Muestra la página principal con los productos destacados de la BD
-     */
     public function ver_principal()
     {
         
@@ -23,15 +20,11 @@ class ProductoController extends Controller
         return view('frontend.principal', compact('productosDestacados'));
     }
 
-    /**
-     * listado de productos filtrado por categoría o por el buscador
-     */
     public function ver_catalogo(Request $request, $id_categoria = null) 
     {
         $categoriaActual = null;
 
         if ($id_categoria) {
-            // Buscamos el objeto de la categoría completo en la BD
             $categoriaActual = Categoria::find($id_categoria);
 
             if ($categoriaActual) {
@@ -52,7 +45,6 @@ class ProductoController extends Controller
             $productos = $query->get();
         }
 
-        // Enviamos el objeto completo a la vista
         return view('frontend.productos', [
             'productos' => $productos,
             'categoria' => $categoriaActual 
@@ -79,16 +71,14 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
-        // 1. Si eligió "nueva", primero creamos la categoría dinámicamente para tener un ID real
         if ($request->id_categoria === 'nueva' && $request->filled('nueva_categoria')) {
             $nuevaCat = Categoria::create([
                 'descripcion' => $request->nueva_categoria
             ]);
-            // Reemplazamos el valor "nueva" por el ID recién creado en la base de datos
             $request->merge(['id_categoria' => $nuevaCat->id]);
         }
 
-        // 2. Modificamos la validación (Cambiamos 'image' por 'file|mimes:...')
+        
         $request->validate([
             'nombre'       => 'required|string|max:100',
             'precio'       => 'required|numeric|min:0',
@@ -133,7 +123,7 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
 
-        // 1. Lo mismo por si editan y deciden crear una categoría nueva al vuelo
+        
         if ($request->id_categoria === 'nueva' && $request->filled('nueva_categoria')) {
             $nuevaCat = Categoria::create([
                 'descripcion' => $request->nueva_categoria
@@ -141,7 +131,7 @@ class ProductoController extends Controller
             $request->merge(['id_categoria' => $nuevaCat->id]);
         }
 
-        // 2. Modificamos la validación del update
+        
         $request->validate([
             'nombre'       => 'required|string|max:100',
             'precio'       => 'required|numeric|min:0',

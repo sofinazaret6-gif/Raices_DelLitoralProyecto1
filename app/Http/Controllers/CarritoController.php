@@ -249,17 +249,17 @@ class CarritoController extends Controller
 
             DB::commit();
 
-            // 🛒 Limpiamos el carrito local
+            // Limpia el carrito local
             session()->forget('carrito');
 
-            // ✨ ARREGLADO: Mensaje personalizado según tu nueva vista interna (tarjeta o efectivo)
+            
             if ($request->metodo_pago === 'tarjeta') {
                 $mensaje = 'Pago con tarjeta registrado correctamente.';
             } else {
                 $mensaje = 'Pedido registrado correctamente en efectivo.';
             }
 
-            // Ambos flujos terminan directo en tu comprobante interno
+            
             return redirect()
                 ->route('comprobante', $venta->id)
                 ->with('success', $mensaje);

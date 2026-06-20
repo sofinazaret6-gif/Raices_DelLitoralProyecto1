@@ -12,23 +12,23 @@ class AdminController extends Controller
 {
     public function index()
     {
-        // Fijamos la zona horaria de Argentina
         $hoy = Carbon::now('America/Argentina/Buenos_Aires');
         $fechaHoyString = $hoy->format('Y-m-d');
 
-        // 1. Calcular Ventas Totales del Mes (usando horario de Argentina)
+        //  Calcular Ventas Totales del Mes
         $ventasMes = Venta::where('estadoVenta', 'realizada')
             ->whereMonth('created_at', $hoy->month)
             ->whereYear('created_at', $hoy->year)
             ->sum('total');
 
-        // 2. Contar Productos con bajo stock 
+         
+            
         $bajoStock = Producto::where('stock', '<', 5)->count();
 
-        // 3. Contar Consultas Pendientes 
+         
         $consultasPendientes = Consulta::where('estado_consulta', 'pendiente')->count();
 
-        // 4. Calcular Ventas del Día de hoy (Convertimos el created_at de la BD a la fecha de Argentina antes de comparar)
+        // Calcular Ventas del Día de hoy 
         $ventasDia = Venta::where('estadoVenta', 'realizada')
             ->whereRaw("DATE(CONVERT_TZ(created_at, '+00:00', '-03:00')) = ?", [$fechaHoyString])
             ->sum('total');
@@ -73,7 +73,7 @@ class AdminController extends Controller
     }
     public function listarUsuarios()
     {
-        // Traemos todas las personas con su respectivo perfil/rol
+        
         $usuarios = \App\Models\Persona::with('perfil')->orderBy('created_at', 'desc')->get();
         
         return view('dashboard.listar_usuarios', compact('usuarios'));

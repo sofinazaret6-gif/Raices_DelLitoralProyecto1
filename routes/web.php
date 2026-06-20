@@ -10,7 +10,7 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PersonaController;
 
-// Ruta principal (home)
+// Ruta principal
 Route::get('/', [ProductoController::class, 'ver_principal'])->name('principal');
 
 // Vistas estáticas
@@ -63,7 +63,7 @@ Route::get('/perfil/password', [PerfilController::class, 'editPassword'])->name(
 Route::put('/perfil/password', [PerfilController::class, 'updatePassword'])->name('perfil.password.update');
 
 // ----------------------------------------------------
-// FLUJO DEL CARRITO DE COMPRAS
+//  CARRITO DE COMPRAS
 // ----------------------------------------------------
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito');
 Route::post('/carrito/agregar/{idProducto}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
@@ -71,14 +71,14 @@ Route::put('/carrito/actualizar/{idProducto}', [CarritoController::class, 'actua
 Route::delete('/carrito/eliminar/{idProducto}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
 Route::delete('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
 
-// 🔄 FINALIZAR: Chequea datos personales
+//  FINALIZAR: verifica datos personales
 Route::post('/carrito/finalizar', [CarritoController::class, 'finalizar'])->name('carrito.finalizar');
 
-// 📝 DATOS COMPRA
+//  DATOS COMPRA
 Route::get('/completar-datos-compra', [PersonaController::class, 'formCompletarDatos'])->name('perfil.completar');
 Route::put('/completar-datos-compra', [PersonaController::class, 'guardarDatosCompra'])->name('perfil.guardarDatosCompra');
 
-// 💳 PAGO: Eliminamos '/compra/confirmar' que hacía puente y rompía el flujo
+//  PAGO: Eliminamos '/compra/confirmar'
 Route::get('/pago', [CarritoController::class, 'formPago'])->name('pago');
 Route::post('/pago', [CarritoController::class, 'procesarPago'])->name('compra.pagar');
 

@@ -7,12 +7,12 @@
     </x-slot:barraP>
 
     <style>
-         /* Botón activo */
+         
         .accordion-button:not(.collapsed) {
             background-color: #198754;
             color: white;
         }
-          /* Quita borde azul al hacer click */
+          
         .accordion-button:focus {
             box-shadow: none;
             border-color: #198754;
@@ -37,7 +37,7 @@
                         Uso del sitio
                     </button>
                 </h2>
-                  <!-- Contenido (visible por defecto) -->
+                  <!-- Contenido  -->
                 <div id="uno" class="accordion-collapse collapse show" data-bs-parent="#accordionTerminos">
                     <div class="accordion-body">
                         El usuario se compromete a utilizar este sitio de manera responsable, evitando acciones que puedan afectar su funcionamiento.
